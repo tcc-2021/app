@@ -22,7 +22,9 @@ class CardGeo extends Component {
     return (
       <Container style={styles.container}>
         <Content padder>
+          
           <Card style={styles.mb}>
+
             <CardItem>
               <Left>
                 <Body>
@@ -31,19 +33,8 @@ class CardGeo extends Component {
               </Left>
             </CardItem>
 
-            <CardItem cardBody>
-              <Image
-                style={{
-                  resizeMode: "cover",
-                  width: null,
-                  height: 200,
-                  flex: 1
-                }}
-                source={cardImage}
-              />
-            </CardItem>
-
           </Card>
+          
         </Content>
       </Container>
     );
@@ -53,7 +44,7 @@ class CardGeo extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFF",
-    height: 385
+    height: 250
   },
   mb: {
     marginBottom: 15
