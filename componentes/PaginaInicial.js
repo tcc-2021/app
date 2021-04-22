@@ -3,8 +3,8 @@ import {Text, StyleSheet, View, ScrollView} from "react-native";
 import {Container, CardItem, Body} from "native-base";
 
 import IconFooter from "./Footer.js";
-import CustomHeader from "./CustomHeader.js";
-import CardImage from "./CardImage.js";
+
+import IconHeader from "./CustomHeader.js";
 
 import CardBio from "./cards/CardBio.js";
 import CardFis from "./cards/CardFis.js";
@@ -17,8 +17,10 @@ import CardQuim from "./cards/CardQuim.js";
 export default function PaginaInicial() {
 	return(
 		<Container>
-			{/*<CustomHeader>
-			</CustomHeader>*/}
+			
+			<IconHeader>
+			</IconHeader>
+			
 			<ScrollView>
 
 				<CardBio> </CardBio>
@@ -28,7 +30,7 @@ export default function PaginaInicial() {
 				<CardMat> </CardMat>
 				<CardPt> </CardPt>
 				<CardQuim> </CardQuim>
-				
+
 			</ScrollView>
 			<IconFooter> </IconFooter>
 		</Container>

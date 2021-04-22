@@ -6,23 +6,29 @@ import {
   Title,
   Content,
   Button,
+  Icon,
   Left,
   Right,
   Body,
   Text
 } from "native-base";
 
-class CustomHeader extends Component {
+class IconHeader extends Component {
   render() {
     return (
       <Container style={styles.container}>
+
         <Header>
-          <Left />
-          <Body>
-            <Title>Header</Title>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.goBack()}>
+              <Icon name="menu" />
+            </Button>
+          </Left>
+          <Body style={{marginLeft: -100}}>
+            <Title> Studiis </Title>
           </Body>
-          <Right />
         </Header>
+
       </Container>
     );
   }
@@ -30,8 +36,9 @@ class CustomHeader extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFF"
+    backgroundColor: "#FFF",
+    marginBottom: 60
   }
 });
 
-export default CustomHeader;
+export default IconHeader;
