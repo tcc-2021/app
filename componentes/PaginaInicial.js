@@ -4,7 +4,7 @@ import {Container, CardItem, Body} from "native-base";
 
 import IconFooter from "./Footer.js";
 
-import IconHeader from "./CustomHeader.js";
+import IconHeader from "./IconHeader.js";
 
 import CardBio from "./cards/CardBio.js";
 import CardFis from "./cards/CardFis.js";
