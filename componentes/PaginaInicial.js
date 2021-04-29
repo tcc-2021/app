@@ -1,77 +1,76 @@
  import * as React from "react";
-import {Text, StyleSheet, TouchableOpacity, Image, ScrollView} from "react-native";
-import {Container, Right, View} from "native-base";
+import {Text, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions} from "react-native";
+import {View} from "native-base";
 
 import IconFooter from "./Footer.js";
 
 import IconHeader from "./IconHeader.js";
 
-const ContainerLado = 140;
+{/* tentativa de suportar o máximo de viewports possíveis, provavelmente falha por conta do - 40. rever isso*/}
+const ContainerLado = Dimensions.get('window').width / 2 - 40;
 export default function PaginaInicial() {
 	return(
-		<Container>
-			
+		<View>
 			<IconHeader></IconHeader>
-			<View>
-				<ScrollView contentContainerStyle={{flex: 1, flexDirection: "row", marginTop: -20, marginLeft: 10}} style={styles.scrollView}>
-					<Container style={{flex: 1, flexDirection: "column"}}>
-						<Container style={styles.contIndividual}>
+				<ScrollView contentContainerStyle={{flexGrow: 1, flexDirection: "row", marginTop: -20, marginLeft: 15}} style={styles.scrollView}
+				showsVerticalScrollIndicator={false}
+				showsHorizontalScrollIndicator={false}>
+					<View style={styles.columnView}>
+						<View style={styles.contIndividual}>
 							<TouchableOpacity style={styles.btn}>
 								<Image style={styles.imgbio} source={require('../assets/biologia.png')} />
 							</TouchableOpacity>
 							<Text style={styles.legenda}>Biologia</Text>
-						</Container>
+						</View>
 						
 						
-						<Container style={styles.contIndividual}>
+						<View style={styles.contIndividual}>
 							<TouchableOpacity style={styles.btn}>
 								<Image style={styles.imgbio} source={require('../assets/fisica.png')} />
 							</TouchableOpacity>
 							<Text style={styles.legenda}>Física</Text>
-						</Container>
+						</View>
 
-						<Container style={styles.contIndividual}>
+						<View style={styles.contIndividual}>
 							<TouchableOpacity style={styles.btn}>
 								<Image style={styles.imgbio} source={require('../assets/matematica.png')} />
 							</TouchableOpacity>
 							<Text style={styles.legenda}>Matemática</Text>
-						</Container>
-					</Container>
+						</View>
+					</View>
 
-					<Container style={{flex: 1, flexDirection: "column"}}>
-						<Container style={styles.contIndividual}>
+					<View style={styles.columnView}>
+						<View style={styles.contIndividual}>
 							<TouchableOpacity style={styles.btn}>
 								<Image style={styles.imgbio} source={require('../assets/portugues.png')} />
 							</TouchableOpacity>
 							<Text style={styles.legenda}>Português</Text>
-						</Container>
+						</View>
 
-						<Container style={styles.contIndividual}>
+						<View style={styles.contIndividual}>
 							<TouchableOpacity style={styles.btn}>
 								<Image style={styles.imgbio} source={require('../assets/geografia.png')} />
 							</TouchableOpacity>
 							<Text style={styles.legenda}>Geografia</Text>
-						</Container>
+						</View>
 
-						<Container style={styles.contIndividual}>
+						<View style={styles.contIndividual}>
 							<TouchableOpacity style={styles.btn}>
 								<Image style={styles.imgbio} source={require('../assets/quimica.png')} />
 							</TouchableOpacity>
 							<Text style={styles.legenda}>Química</Text>
-						</Container>
+						</View>
 
-						<Container style={styles.contIndividual}>
+						<View style={[styles.contIndividual, {left: "-45%"}]}>
 							<TouchableOpacity style={styles.btn}>
 								<Image style={styles.imgbio} source={require('../assets/historia.png')} />
 							</TouchableOpacity>
 							<Text style={styles.legenda}>História</Text>
-						</Container>
-					</Container>
+						</View>
+					</View>
 				</ScrollView>
-			</View>
-
 			<IconFooter></IconFooter>
-		</Container>
+		</View>
 	);
 }
 
@@ -95,7 +94,8 @@ const styles = StyleSheet.create({
     position: "relative",
     top: 10,
     textAlign: "center",
-    fontSize: 17,
+    fontSize: 19,
+	fontFamily: "Lato",
     color: "purple",
     left: 0,
   },
@@ -110,13 +110,11 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     width: '100%',
-	height: '80%',
-    margin: 0,
+	height: '82%',
     alignSelf: 'center',
-    padding: 0,
-    borderWidth: 5,
-    borderRadius: 5,
-    borderColor: 'black',
-    backgroundColor: 'lightblue',
   },
+  columnView: {
+	flex: 1,
+	flexDirection: "column"
+  }
 });

@@ -10,9 +10,9 @@
         "backgroundColor": "#24364f"
     },
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo-larg.png",
       "resizeMode": "contain",
-      "backgroundColor": "#24364f"
+      "backgroundColor": "#6e4380"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
