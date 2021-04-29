@@ -1,66 +1,74 @@
-import * as React from "react";
-import {Text, StyleSheet, TouchableOpacity, Image} from "react-native";
-import {Container} from "native-base";
+ import * as React from "react";
+import {Text, StyleSheet, TouchableOpacity, Image, ScrollView} from "react-native";
+import {Container, Right, View} from "native-base";
 
 import IconFooter from "./Footer.js";
 
 import IconHeader from "./IconHeader.js";
 
-const ContainerLado = 110;
+const ContainerLado = 140;
 export default function PaginaInicial() {
 	return(
 		<Container>
 			
 			<IconHeader></IconHeader>
+			<View>
+				<ScrollView contentContainerStyle={{flex: 1, flexDirection: "row", marginTop: -20, marginLeft: 10}} style={styles.scrollView}>
+					<Container style={{flex: 1, flexDirection: "column"}}>
+						<Container style={styles.contIndividual}>
+							<TouchableOpacity style={styles.btn}>
+								<Image style={styles.imgbio} source={require('../assets/biologia.png')} />
+							</TouchableOpacity>
+							<Text style={styles.legenda}>Biologia</Text>
+						</Container>
+						
+						
+						<Container style={styles.contIndividual}>
+							<TouchableOpacity style={styles.btn}>
+								<Image style={styles.imgbio} source={require('../assets/fisica.png')} />
+							</TouchableOpacity>
+							<Text style={styles.legenda}>Física</Text>
+						</Container>
 
-			<Container style={[styles.contIndividual, {top: -15}]}>
-      			<TouchableOpacity style={styles.btn}>
-        			<Image style={styles.imgbio} source={require('../assets/biologia.png')} />
-      			</TouchableOpacity>
-      			<Text style={styles.legenda}>Ser amiga do</Text>
-    		</Container>
-			
-			<Container style={[styles.contIndividual, {top: 150}]}>
-      			<TouchableOpacity style={styles.btn}>
-        			<Image style={styles.imgbio} source={require('../assets/fisica.png')} />
-      			</TouchableOpacity>
-      			<Text style={styles.legenda}>mc gh é que nem</Text>
-    		</Container>			
+						<Container style={styles.contIndividual}>
+							<TouchableOpacity style={styles.btn}>
+								<Image style={styles.imgbio} source={require('../assets/matematica.png')} />
+							</TouchableOpacity>
+							<Text style={styles.legenda}>Matemática</Text>
+						</Container>
+					</Container>
 
-			<Container style={[styles.contIndividual, {left: "37%", top: -15}]}>
-      			<TouchableOpacity style={styles.btn}>
-        			<Image style={styles.imgbio} source={require('../assets/portugues.png')} />
-      			</TouchableOpacity>
-      			<Text style={styles.legenda}>Português</Text>
-    		</Container>
+					<Container style={{flex: 1, flexDirection: "column"}}>
+						<Container style={styles.contIndividual}>
+							<TouchableOpacity style={styles.btn}>
+								<Image style={styles.imgbio} source={require('../assets/portugues.png')} />
+							</TouchableOpacity>
+							<Text style={styles.legenda}>Português</Text>
+						</Container>
 
-			<Container style={[styles.contIndividual, {left: "37%", top: 150}]}>
-      			<TouchableOpacity style={styles.btn}>
-        			<Image style={styles.imgbio} source={require('../assets/geografia.png')} />
-      			</TouchableOpacity>
-      			<Text style={styles.legenda}>Geografia</Text>
-    		</Container>
+						<Container style={styles.contIndividual}>
+							<TouchableOpacity style={styles.btn}>
+								<Image style={styles.imgbio} source={require('../assets/geografia.png')} />
+							</TouchableOpacity>
+							<Text style={styles.legenda}>Geografia</Text>
+						</Container>
 
-			<Container style={[styles.contIndividual, {left: "37%", top: 310}]}>
-      			<TouchableOpacity style={styles.btn}>
-        			<Image style={styles.imgbio} source={require('../assets/quimica.png')} />
-      			</TouchableOpacity>
-      			<Text style={styles.legenda}>ficar 10 horas de pé,</Text>
-    		</Container>
+						<Container style={styles.contIndividual}>
+							<TouchableOpacity style={styles.btn}>
+								<Image style={styles.imgbio} source={require('../assets/quimica.png')} />
+							</TouchableOpacity>
+							<Text style={styles.legenda}>Química</Text>
+						</Container>
 
-			<Container style={[styles.contIndividual, {left: "68%", top: -15}]}>
-      			<TouchableOpacity style={styles.btn}>
-        			<Image style={styles.imgbio} source={require('../assets/matematica.png')} />
-      			</TouchableOpacity>
-      			<Text style={styles.legenda}>chega uma hora q vc senta</Text>
-    		</Container>
-
-			<Container style={[styles.contIndividual, {left: "68%", top: 170}]}>
-      			<TouchableOpacity style={styles.btn}>
-        			<Image style={styles.imgbio} source={require('../assets/historia.png')} />
-      			</TouchableOpacity>
-      			<Text style={styles.legenda}>História</Text>
-    		</Container>
+						<Container style={styles.contIndividual}>
+							<TouchableOpacity style={styles.btn}>
+								<Image style={styles.imgbio} source={require('../assets/historia.png')} />
+							</TouchableOpacity>
+							<Text style={styles.legenda}>História</Text>
+						</Container>
+					</Container>
+				</ScrollView>
+			</View>
 
 			<IconFooter></IconFooter>
 		</Container>
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
     height: ContainerLado,
     backgroundColor: '#FFF',
     borderRadius: ContainerLado / 2,
-    left: 0
+    left: 0,
   },
   legenda: {
     position: "relative",
@@ -89,15 +97,26 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 17,
     color: "purple",
-    flex: 1,
     left: 0,
   },
   contIndividual: {
-	position: "absolute", 
-	flex: 1, 
+	position: "relative",
 	left: "5%",
-	marginTop: 100,
 	textAlign: 'center', 
 	width: ContainerLado,
+	flex: 0,
+	marginTop: 40,
+	height: 180,
+  },
+  scrollView: {
+    width: '100%',
+	height: '80%',
+    margin: 0,
+    alignSelf: 'center',
+    padding: 0,
+    borderWidth: 5,
+    borderRadius: 5,
+    borderColor: 'black',
+    backgroundColor: 'lightblue',
   },
 });
