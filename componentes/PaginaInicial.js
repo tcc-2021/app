@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     width: '100%',
-	height: '82%',
+	height: '80%',
     alignSelf: 'center',
   },
   columnView: {
