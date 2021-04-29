@@ -24,7 +24,7 @@ class IconHeader extends Component {
               <Icon name="menu" />
             </Button>
           </Left>
-          <Body style={{marginLeft: -100}}>
+          <Body style={{position: "relative", marginLeft: -70}}>
             <Title> Studiis </Title>
           </Body>
         </Header>

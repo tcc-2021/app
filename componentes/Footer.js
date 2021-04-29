@@ -73,7 +73,7 @@ class IconFooter extends Component {
               <Icon active={this.state.tab3} name="compass" />
             </Button>
             <Button active={this.state.tab4} onPress={() => this.toggleTab4()}>
-              <Icon active={this.state.tab4} name="contact" />
+              <Icon active={this.state.tab4} name="car" />
             </Button>
           </FooterTab>
         </Footer>
