@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFF",
     marginBottom: 60,
-    marginTop: Constants.statusBarHeight,
   }
 });
 
