@@ -37,6 +37,13 @@ export default function PaginaInicial() {
 							</TouchableOpacity>
 							<Text style={styles.legenda}>Matemática</Text>
 						</View>
+
+						<View style={styles.contIndividual}>
+							<TouchableOpacity style={styles.btn}>
+								<Image style={styles.imgbio} source={require('../assets/ingles.png')} />
+							</TouchableOpacity>
+							<Text style={styles.legenda}>Inglês</Text>
+						</View>
 					</View>
 
 					<View style={styles.columnView}>
@@ -61,7 +68,7 @@ export default function PaginaInicial() {
 							<Text style={styles.legenda}>Química</Text>
 						</View>
 
-						<View style={[styles.contIndividual, {left: "-45%"}]}>
+						<View style={styles.contIndividual}>
 							<TouchableOpacity style={styles.btn}>
 								<Image style={styles.imgbio} source={require('../assets/historia.png')} />
 							</TouchableOpacity>
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 19,
 	fontFamily: "Lato",
-    color: "purple",
+    color: "#6e4380",
     left: 0,
   },
   contIndividual: {
