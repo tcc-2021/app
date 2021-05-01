@@ -10,7 +10,7 @@
         "backgroundColor": "#24364f"
     },
     "splash": {
-      "image": "./assets/logo-larg.png",
+      "image": "./assets/logo-large.png",
       "resizeMode": "contain",
       "backgroundColor": "#6e4380"
     },

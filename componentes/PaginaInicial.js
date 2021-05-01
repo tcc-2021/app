@@ -1,4 +1,4 @@
- import * as React from "react";
+import * as React from "react";
 import {StyleSheet, ScrollView} from "react-native";
 import {View} from "native-base";
 
