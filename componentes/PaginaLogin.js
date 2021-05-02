@@ -19,8 +19,8 @@ export default function PaginaLogin() {
     return (
         <Container style={styles.container}>
             <Image
-                source={require("../assets/logo-large.png")}
-                style={{ height: 100, width: 300, alignSelf: "center" }}
+                source={require("../assets/contorno1px-logo-medium.png")}
+                style={{ height: 67, width: 192, alignSelf: "center" }}
             ></Image>
             <Text style={styles.titleLogin}>Login</Text>
             <Content>
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         fontFamily: "Lato",
         textAlign: "center",
         fontSize: 30,
-        marginTop: 20,
+        marginTop: 40,
     },
     arrendodadoIn: {
         borderRadius: 20,
