@@ -175,10 +175,10 @@ const styles = StyleSheet.create({
     innerViewHack: {
         backgroundColor: "#FFF",
         borderRadius: 20,
-        marginTop: 7,
-        marginRight: 2,
-        marginBottom: -3,
-        marginLeft: 2,
+        marginTop: 6,
+        marginRight: 1,
+        marginBottom: -4,
+        marginLeft: 1,
 
         top: -5,
         height: 40,
