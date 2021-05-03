@@ -7,6 +7,7 @@ import {View} from "react-native";
 
 import PaginaInicial from "./componentes/PaginaInicial.js";
 import PaginaLogin from "./componentes/PaginaLogin.js";
+import PaginaRegistro from "./componentes/PaginaRegistro.js";
 
 export default class App extends React.Component {
   constructor(props) {

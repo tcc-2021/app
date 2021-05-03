@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "androidStatusBar": {
         "barStyle": "light-content",
-        "backgroundColor": "#24364f"
+        "backgroundColor": "#6e4380"
     },
     "splash": {
       "image": "./assets/logo-large.png",
