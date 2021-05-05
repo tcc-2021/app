@@ -1,91 +1,118 @@
-import React, { Component } from "react";
-import { StyleSheet, View } from 'react-native'
+import * as React from "react";
+import { StyleSheet, View } from "react-native";
 import {
-  Container,
-  Header,
-  Title,
-  Content,
-  Button,
-  Footer,
-  FooterTab,
-  Body,
-  Left,
-  Right,
-  Icon
+    Container,
+    Header,
+    Title,
+    Content,
+    Button,
+    Footer,
+    FooterTab,
+    Body,
+    Left,
+    Right,
+    Icon,
+    Text,
 } from "native-base";
 
-class IconFooter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tab1: false,
-      tab2: false,
-      tab3: true,
-      tab4: false
-    };
-  }
-  toggleTab1() {
-    this.setState({
-      tab1: true,
-      tab2: false,
-      tab3: false,
-      tab4: false
-    });
-  }
-  toggleTab2() {
-    this.setState({
-      tab1: false,
-      tab2: true,
-      tab3: false,
-      tab4: false
-    });
-  }
-  toggleTab3() {
-    this.setState({
-      tab1: false,
-      tab2: false,
-      tab3: true,
-      tab4: false
-    });
-  }
-  toggleTab4() {
-    this.setState({
-      tab1: false,
-      tab2: false,
-      tab3: false,
-      tab4: true
-    });
-  }
-  render() {
-    return (
-      <View>
-        <Content padder />
+import * as RootNavigation from "./RootNavigation";
 
-        <Footer>
-          <FooterTab>
-            <Button active={this.state.tab1} onPress={() => this.toggleTab1()}>
-              <Icon active={this.state.tab1} name="apps" />
-            </Button>
-            <Button active={this.state.tab2} onPress={() => this.toggleTab2()}>
-              <Icon active={this.state.tab2} name="camera" />
-            </Button>
-            <Button active={this.state.tab3} onPress={() => this.toggleTab3()}>
-              <Icon active={this.state.tab3} name="compass" />
-            </Button>
-            <Button active={this.state.tab4} onPress={() => this.toggleTab4()}>
-              <Icon active={this.state.tab4} name="car" />
-            </Button>
-          </FooterTab>
-        </Footer>
-      </View>
-    );
-  }
+import temas from "../temas-native-base/Tema.js";
+
+export default class IconFooter extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tab1: false,
+            tab2: false,
+            tab3: true,
+            tab4: false,
+        };
+    }
+    toggleTab1() {
+        this.setState({
+            tab1: true,
+            tab2: false,
+            tab3: false,
+            tab4: false,
+        });
+        RootNavigation.navigate("Materias");
+    }
+    toggleTab2() {
+        this.setState({
+            tab1: false,
+            tab2: true,
+            tab3: false,
+            tab4: false,
+        });
+    }
+    toggleTab3() {
+        this.setState({
+            tab1: false,
+            tab2: false,
+            tab3: true,
+            tab4: false,
+        });
+        RootNavigation.navigate("Simulado");
+    }
+    toggleTab4() {
+        this.setState({
+            tab1: false,
+            tab2: false,
+            tab3: false,
+            tab4: true,
+        });
+    }
+    render() {
+        return (
+            <View>
+                <Content padder />
+
+                <Footer>
+                    <FooterTab
+                        theme={temas}
+                        style={{ backgroundColor: "#7c32ff" }}
+                    >
+                        <Button
+                            active={this.state.tab1}
+                            onPress={() => this.toggleTab1()}
+                            style={{ backgroundColor: "#7c32ff" }}
+                            vertical
+                        >
+                            <Icon active={this.state.tab1} name="book" />
+                            <Text style={{ fontSize: 10 }}>Exercícios</Text>
+                        </Button>
+                        <Button
+                            active={this.state.tab2}
+                            onPress={() => this.toggleTab2()}
+                            style={{ backgroundColor: "#7c32ff" }}
+                            vertical
+                        >
+                            <Icon active={this.state.tab2} name="library" />
+                            <Text style={{ fontSize: 10 }}>Biblioteca</Text>
+                        </Button>
+                        <Button
+                            active={this.state.tab3}
+                            onPress={() => this.toggleTab3()}
+                            style={{ backgroundColor: "#7c32ff" }}
+                            vertical
+                        >
+                            <Icon active={this.state.tab3} name="trending-up" />
+                            <Text style={{ fontSize: 10 }}>Simulado</Text>
+                        </Button>
+                        <Button
+                            active={this.state.tab4}
+                            onPress={() => this.toggleTab4()}
+                            style={{ backgroundColor: "#7c32ff" }}
+                            vertical
+                        >
+                            <Icon active={this.state.tab4} name="settings" />
+                            <Text style={{ fontSize: 7 }}>Configurações</Text>
+                        </Button>
+                    </FooterTab>
+                </Footer>
+            </View>
+        );
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF"
-  }
-});
-
-export default IconFooter;

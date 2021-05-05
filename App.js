@@ -29,10 +29,11 @@ export default class App extends React.Component {
     }
 
     render() {
+        // useScreens();
         if (!this.state.isReady) {
             return <AppLoading />;
         }
 
-        return <PaginaSimulado> </PaginaSimulado>;
+        return <PaginaInicial> </PaginaInicial>;
     }
 }

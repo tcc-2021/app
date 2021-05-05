@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
 import {
     Container,
     Header,
@@ -69,8 +69,9 @@ export default class PaginaSimulado extends Component {
     render() {
         return (
             <Container>
-                <Content
-                    contentContainerStyle={{ marginTop: 15, height: "118%" }}
+                <ScrollView
+                    style={{ marginTop: 13 }}
+                    showsVerticalScrollIndicator={false}
                 >
                     <Text style={styles.title}>
                         Selecione as matérias que deseja que estejam presentes
@@ -216,10 +217,10 @@ export default class PaginaSimulado extends Component {
                             width: 170,
                             height: 65,
                             transform: [{ scaleX: -1 }],
-                            top: -60,
+                            marginTop: -55,
                         }}
                     ></Image>
-                </Content>
+                </ScrollView>
             </Container>
         );
     }
