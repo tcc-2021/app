@@ -1,0 +1,17 @@
+{
+    "matematica": {
+    "name": "Matemática",
+    "data": [
+        { "key": "0", "text": "Operações em conjuntos numéricos", "url": "https://brasilescola.uol.com.br/matematica/operacoes-com-conjuntos.htm"},
+        { "key": "1", "text": "Operações em frações", "url": "https://brasilescola.uol.com.br/matematica/multiplicacao-com-fracao.htm" },
+        { "key": "2", "text": "Fatoração", "url": "https://brasilescola.uol.com.br/matematica/fatoracao-expressao-algebrica.htm" },
+        { "key": "3", "text": "Divisibilidade", "url": "https://brasilescola.uol.com.br/matematica/criterios-divisibilidade.htm" },
+        { "key": "4", "text": "Características de figuras geométricas planas", "url": "https://brasilescola.uol.com.br/o-que-e/matematica/o-que-e-poligono.htm" },
+        { "key": "5", "text": "Grandezas", "url": "https://brasilescola.uol.com.br/o-que-e/fisica/o-que-e-grandeza.htm" },
+        { "key": "6", "text": "Áreas e volumes", "url": "https://brasilescola.uol.com.br/matematica/area-solidos-geometricos.htm" },
+        { "key": "7", "text": "Teorema de Tales", "url": "https://brasilescola.uol.com.br/matematica/teorema-tales.htm" },
+        { "key": "8", "text": "Moda, média e mediana", "url": "https://brasilescola.uol.com.br/matematica/moda-media-mediana.htm" },
+        { "key": "9", "text": "Variância e desvio", "url": "https://brasilescola.uol.com.br/matematica/medidas-dispersao-variancia-desvio-padrao.htm" },
+        { "key": "10", "text": "Gráficos e funções", "url": "https://brasilescola.uol.com.br/matematica/funcoes.htm" }
+    ]}
+}

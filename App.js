@@ -6,9 +6,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { View } from "react-native";
 
 import PaginaInicial from "./componentes/PaginaInicial.js";
-import PaginaLogin from "./componentes/PaginaLogin.js";
-import PaginaRegistro from "./componentes/PaginaRegistro.js";
-import PaginaSimulado from "./componentes/PaginaSimulado.js";
 
 export default class App extends React.Component {
     constructor(props) {

@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Materias from "./Materias.js";
 import PaginaSimulado from "./PaginaSimulado.js";
+import PaginaBiblioteca from "./PaginaBiblioteca.js";
 import IconFooter from "./Footer.js";
 
 import { navigationRef } from "./RootNavigation";
@@ -25,6 +26,11 @@ export default function PaginaInicial() {
                     options={{ headerShown: false }}
                     name="Simulado"
                     component={PaginaSimulado}
+                />
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    name="Biblioteca"
+                    component={PaginaBiblioteca}
                 />
             </Stack.Navigator>
             <IconFooter></IconFooter>

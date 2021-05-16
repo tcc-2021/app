@@ -175,6 +175,7 @@ export default class PaginaSimulado extends Component {
                             </Text>
                         </Body>
                     </ListItem>
+                    {/*
                     <ListItem onPress={() => this.handleCheckboxes(8)}>
                         <CheckBox
                             checked={this.state.redacao}
@@ -186,7 +187,7 @@ export default class PaginaSimulado extends Component {
                                 <Icon active name="pencil"></Icon> | Redação
                             </Text>
                         </Body>
-                    </ListItem>
+                    </ListItem>*/}
 
                     <GradientButton
                         style={{ marginTop: 15, left: "75%" }}
