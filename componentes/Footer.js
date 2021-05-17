@@ -64,6 +64,7 @@ export default class IconFooter extends React.Component {
             tab3: false,
             tab4: true,
         });
+        RootNavigation.navigate("Perfil");
     }
     render() {
         return (
@@ -108,8 +109,11 @@ export default class IconFooter extends React.Component {
                             style={{ backgroundColor: "#7c32ff" }}
                             vertical
                         >
-                            <Icon active={this.state.tab4} name="settings" />
-                            <Text style={{ fontSize: 7 }}>Configurações</Text>
+                            <Icon
+                                active={this.state.tab4}
+                                name="person-circle-outline"
+                            />
+                            <Text style={{ fontSize: 10 }}>Perfil</Text>
                         </Button>
                     </FooterTab>
                 </Footer>

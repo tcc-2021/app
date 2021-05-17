@@ -10,6 +10,7 @@ import PaginaBiblioteca from "./PaginaBiblioteca.js";
 import IconFooter from "./Footer.js";
 
 import { navigationRef } from "./RootNavigation";
+import PaginaPerfil from "./PaginaPerfil.js";
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,11 @@ export default function PaginaInicial() {
                     options={{ headerShown: false }}
                     name="Biblioteca"
                     component={PaginaBiblioteca}
+                />
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    name="Perfil"
+                    component={PaginaPerfil}
                 />
             </Stack.Navigator>
             <IconFooter></IconFooter>

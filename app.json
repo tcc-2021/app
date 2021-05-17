@@ -6,8 +6,8 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "androidStatusBar": {
-        "barStyle": "light-content",
-        "backgroundColor": "#6e4380"
+      "barStyle": "light-content",
+      "backgroundColor": "#6e4380"
     },
     "splash": {
       "image": "./assets/logo-large.png",
@@ -27,13 +27,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "studiis.da"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "build": {
         "babel": {
-          "include": ["@codler/react-native-keyboard-aware-scroll-view"]
+          "include": [
+            "@codler/react-native-keyboard-aware-scroll-view"
+          ]
         }
       }
     }

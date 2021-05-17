@@ -5,7 +5,7 @@ import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { View } from "react-native";
 
-import PaginaInicial from "./componentes/PaginaInicial.js";
+import PaginaInicial from "./componentes/PaginaInicial";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -31,6 +31,6 @@ export default class App extends React.Component {
             return <AppLoading />;
         }
 
-        return <PaginaInicial> </PaginaInicial>;
+        return <PaginaInicial></PaginaInicial>;
     }
 }

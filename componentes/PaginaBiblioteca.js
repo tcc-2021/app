@@ -13,9 +13,10 @@ import {
 import { Icon, Content } from "native-base";
 
 import { SwipeListView } from "react-native-swipe-list-view";
+import { PieChart } from "react-native-chart-kit";
 
 const rowSwipeAnimatedValues = {};
-Array(20)
+Array(30)
     .fill("")
     .forEach((_, i) => {
         rowSwipeAnimatedValues[`${i}`] = new Animated.Value(0);
@@ -23,7 +24,8 @@ Array(20)
 
 export default function PaginaBiblioteca() {
     ////const listData = require("./Biblioteca.json")["matematica"];
-    const listData = require("./Biblioteca.json")["matematica"]["data"];
+    const listData = require("./Biblioteca.json");
+    console.log(listData);
 
     const onRowDidOpen = (rowKey) => {
         console.log("This row opened", rowKey);
@@ -35,11 +37,7 @@ export default function PaginaBiblioteca() {
     };
 
     const renderItem = (data) => (
-        <TouchableHighlight
-            onPress={() => console.log("You touched me")}
-            style={styles.rowFront}
-            underlayColor={"#AAA"}
-        >
+        <TouchableHighlight style={styles.rowFront} underlayColor={"#AAA"}>
             <View>
                 <Text style={{ color: "black" }}>{data.item.text}</Text>
             </View>
@@ -75,21 +73,38 @@ export default function PaginaBiblioteca() {
             </TouchableOpacity>
         </View>
     );
-    const renderSectionHeader = ({ section }) => <Text>{section.title}</Text>;
+
+    const renderSectionHeader = ({ section }) => (
+        <Text style={styles.secHeader}>{section.title}</Text>
+    );
+
     return (
         <View style={styles.container}>
+            <Text
+                style={{
+                    fontFamily: "Lato",
+                    fontSize: 27,
+                    textAlign: "center",
+                    marginTop: 30,
+                }}
+            >
+                Biblioteca
+            </Text>
             <SwipeListView
-                data={listData}
+                useSectionList
+                sections={listData}
                 disableRightSwipe={true}
                 renderItem={renderItem}
                 renderHiddenItem={renderHiddenItem}
+                renderSectionHeader={renderSectionHeader}
                 rightOpenValue={-75}
                 previewRowKey={"0"}
                 previewOpenValue={-40}
                 previewOpenDelay={3000}
                 onRowDidOpen={onRowDidOpen}
                 onSwipeValueChange={onSwipeValueChange}
-                style={{ margin: 12, marginTop: 22 }}
+                showsVerticalScrollIndicator={false}
+                style={{ margin: 12, marginTop: 22, backgroundColor: "#FFF" }}
             />
         </View>
     );
@@ -130,5 +145,11 @@ const styles = StyleSheet.create({
     backRightBtnRight: {
         backgroundColor: "#FFF",
         right: 0,
+    },
+    secHeader: {
+        fontSize: 20,
+        fontFamily: "Lato",
+        marginLeft: 10,
+        marginTop: 25,
     },
 });
