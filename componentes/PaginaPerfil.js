@@ -24,14 +24,14 @@ const data = [
     {
         name: "Não feitas",
         population: 120,
-        color: "#F16459",
+        color: "#DE9D98",
         legendFontColor: "#7F7F7F",
         legendFontSize: 15,
     },
     {
         name: "Feitas",
         population: 50,
-        color: "#DE9D98",
+        color: "#F16459",
         legendFontColor: "#7F7F7F",
         legendFontSize: 15,
     },
@@ -41,14 +41,14 @@ const dataPt = [
     {
         name: "Não feitas",
         population: 57,
-        color: "#F16459",
+        color: "#DE9D98",
         legendFontColor: "#7F7F7F",
         legendFontSize: 15,
     },
     {
         name: "Feitas",
         population: 123,
-        color: "#DE9D98",
+        color: "#F16459",
         legendFontColor: "#7F7F7F",
         legendFontSize: 15,
     },
@@ -70,12 +70,23 @@ const chartConfig = {
     },
 };
 
+import * as SecureStore from "expo-secure-store";
+
+async function save(key, value) {
+    await SecureStore.setItemAsync(key, value);
+}
+
 export default class ListIconExample extends Component {
     alterarEmail() {
         alert("teste");
     }
     alterarSenha() {}
     excluirConta() {}
+    logout() {
+        save("email", "");
+        save("senha", "");
+        this.props.handler(false, "");
+    }
     render() {
         return (
             <Container>
@@ -93,7 +104,7 @@ export default class ListIconExample extends Component {
                             <Icon active name="arrow-forward" />
                         </Right>
                     </ListItem>
-                    <ListItem icon onPress={() => this.alterarSenha()}>
+                    <ListItem icon onPress={this.alterarSenha.bind(this)}>
                         <Left>
                             <Button style={{ backgroundColor: "#FF9501" }}>
                                 <Icon active name="key" />
@@ -106,7 +117,7 @@ export default class ListIconExample extends Component {
                             <Icon active name="arrow-forward" />
                         </Right>
                     </ListItem>
-                    <ListItem icon onPress={() => this.excluirConta()}>
+                    <ListItem icon onPress={this.excluirConta.bind(this)}>
                         <Left>
                             <Button style={{ backgroundColor: "#F33C2D" }}>
                                 <Icon active name="close" />
@@ -114,6 +125,19 @@ export default class ListIconExample extends Component {
                         </Left>
                         <Body>
                             <Text>Excluir conta</Text>
+                        </Body>
+                        <Right>
+                            <Icon active name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem icon onPress={this.logout.bind(this)}>
+                        <Left>
+                            <Button style={{ backgroundColor: "#DC143C" }}>
+                                <Icon active name="remove" />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Text>Logout</Text>
                         </Body>
                         <Right>
                             <Icon active name="arrow-forward" />

@@ -6,6 +6,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { View } from "react-native";
 
 import PaginaInicial from "./componentes/PaginaInicial";
+import PaginaRegistro from "./componentes/PaginaRegistro";
+import PaginaLogin from "./componentes/PaginaLogin";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -31,6 +33,6 @@ export default class App extends React.Component {
             return <AppLoading />;
         }
 
-        return <PaginaInicial></PaginaInicial>;
+        return <PaginaInicial />;
     }
 }

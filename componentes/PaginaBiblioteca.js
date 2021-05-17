@@ -3,109 +3,190 @@ import {
     Animated,
     Image,
     StyleSheet,
-    Text,
     TouchableOpacity,
     TouchableHighlight,
     View,
     Linking,
 } from "react-native";
 
-import { Icon, Content } from "native-base";
-
-import { SwipeListView } from "react-native-swipe-list-view";
-import { PieChart } from "react-native-chart-kit";
-
-const rowSwipeAnimatedValues = {};
-Array(30)
-    .fill("")
-    .forEach((_, i) => {
-        rowSwipeAnimatedValues[`${i}`] = new Animated.Value(0);
-    });
+import {
+    Container,
+    Header,
+    Content,
+    List,
+    ListItem,
+    Text,
+    Icon,
+    Left,
+    Right,
+} from "native-base";
 
 export default function PaginaBiblioteca() {
-    ////const listData = require("./Biblioteca.json")["matematica"];
-    const listData = require("./Biblioteca.json");
-    console.log(listData);
-
-    const onRowDidOpen = (rowKey) => {
-        console.log("This row opened", rowKey);
-    };
-
-    const onSwipeValueChange = (swipeData) => {
-        const { key, value } = swipeData;
-        rowSwipeAnimatedValues[key].setValue(Math.abs(value));
-    };
-
-    const renderItem = (data) => (
-        <TouchableHighlight style={styles.rowFront} underlayColor={"#AAA"}>
-            <View>
-                <Text style={{ color: "black" }}>{data.item.text}</Text>
-            </View>
-        </TouchableHighlight>
-    );
-
-    const renderHiddenItem = (data, rowMap) => (
-        <View style={styles.rowBack}>
-            <TouchableOpacity
-                style={[styles.backRightBtn, styles.backRightBtnRight]}
-                onPress={() => Linking.openURL(data.item.url)}
-            >
-                <Animated.View
-                    style={[
-                        styles.trash,
-                        {
-                            transform: [
-                                {
-                                    scale: rowSwipeAnimatedValues[
-                                        data.item.key
-                                    ].interpolate({
-                                        inputRange: [25, 70],
-                                        outputRange: [0, 1],
-                                        extrapolate: "clamp",
-                                    }),
-                                },
-                            ],
-                        },
-                    ]}
-                >
-                    <Icon name="information-circle-outline"></Icon>
-                </Animated.View>
-            </TouchableOpacity>
-        </View>
-    );
-
-    const renderSectionHeader = ({ section }) => (
-        <Text style={styles.secHeader}>{section.title}</Text>
-    );
-
     return (
         <View style={styles.container}>
-            <Text
-                style={{
-                    fontFamily: "Lato",
-                    fontSize: 27,
-                    textAlign: "center",
-                    marginTop: 30,
-                }}
-            >
-                Biblioteca
-            </Text>
-            <SwipeListView
-                useSectionList
-                sections={listData}
-                disableRightSwipe={true}
-                renderItem={renderItem}
-                renderHiddenItem={renderHiddenItem}
-                renderSectionHeader={renderSectionHeader}
-                rightOpenValue={-75}
-                previewRowKey={"0"}
-                previewOpenValue={-40}
-                previewOpenDelay={3000}
-                onRowDidOpen={onRowDidOpen}
-                onSwipeValueChange={onSwipeValueChange}
-                showsVerticalScrollIndicator={false}
-                style={{ margin: 12, marginTop: 22, backgroundColor: "#FFF" }}
-            />
+            <Content>
+                <List>
+                    <ListItem itemDivider>
+                        <Text>Matemática</Text>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/matematica/operacoes-com-conjuntos.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>Operações em conjuntos numéricos</Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/matematica/multiplicacao-com-fracao.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>Operações em frações</Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/matematica/fatoracao-expressao-algebrica.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>Fatoração</Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/matematica/criterios-divisibilidade.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>Divisibilidade</Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/o-que-e/matematica/o-que-e-poligono.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>
+                                Características de figuras geométricas planas
+                            </Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/o-que-e/fisica/o-que-e-grandeza.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>Grandezas</Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/matematica/area-solidos-geometricos.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>Áreas e volumes</Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/matematica/teorema-tales.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>Teorema de Tales</Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/matematica/moda-media-mediana.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>Moda, média e mediana</Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/matematica/medidas-dispersao-variancia-desvio-padrao.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>Variância e desvio</Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem
+                        onPress={() =>
+                            Linking.openURL(
+                                "https://brasilescola.uol.com.br/matematica/funcoes.htm"
+                            )
+                        }
+                    >
+                        <Left>
+                            <Text>Gráficos e funções</Text>
+                        </Left>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                </List>
+            </Content>
         </View>
     );
 }
@@ -114,42 +195,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: "white",
         flex: 1,
-    },
-    backTextWhite: {
-        color: "#FFF",
-    },
-    rowFront: {
-        // alignItems: "center",
-        backgroundColor: "#FFF",
-        borderBottomColor: "#c738d8",
-        borderBottomWidth: 1,
-        justifyContent: "center",
-        height: 50,
-    },
-    rowBack: {
-        // alignItems: "center",
-        backgroundColor: "#FFF",
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        paddingLeft: 15,
-    },
-    backRightBtn: {
-        alignItems: "center",
-        bottom: 0,
-        justifyContent: "center",
-        position: "absolute",
-        top: 0,
-        width: 75,
-    },
-    backRightBtnRight: {
-        backgroundColor: "#FFF",
-        right: 0,
-    },
-    secHeader: {
-        fontSize: 20,
-        fontFamily: "Lato",
-        marginLeft: 10,
-        marginTop: 25,
+        marginTop: 22,
     },
 });

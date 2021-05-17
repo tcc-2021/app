@@ -37,7 +37,7 @@ export default class IconFooter extends React.Component {
             tab3: false,
             tab4: false,
         });
-        RootNavigation.navigate("Materias");
+        RootNavigation.navigate("Exercicios");
     }
     toggleTab2() {
         this.setState({

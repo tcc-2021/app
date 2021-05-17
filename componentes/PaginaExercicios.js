@@ -10,15 +10,11 @@ import {
     ScrollView,
 } from "react-native";
 
-import IconFooter from "./Footer.js";
-import IconHeader from "./IconHeader.js";
+// Tentativa de suportar o máximo de viewports possíveis, provavelmente falha por conta do - 40. rever isso
 
-{
-    /* tentativa de suportar o máximo de viewports possíveis, provavelmente falha por conta do - 40. rever isso*/
-}
 const ContainerLado = Dimensions.get("window").width / 2 - 40;
 
-class Materias extends Component {
+export default class PaginaExercicios extends Component {
     render() {
         return (
             <View>
@@ -169,5 +165,3 @@ const styles = StyleSheet.create({
         flexDirection: "column",
     },
 });
-
-export default Materias;

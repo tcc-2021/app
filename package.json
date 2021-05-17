@@ -15,6 +15,7 @@
     "expo-app-loading": "^1.0.1",
     "expo-font": "~9.1.0",
     "expo-linear-gradient": "~9.1.0",
+    "expo-secure-store": "~10.1.0",
     "expo-status-bar": "~1.0.3",
     "ionicons": "^5.5.1",
     "native-base": "^2.15.2",
@@ -28,8 +29,6 @@
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.0.0",
     "react-native-splash-screen": "^3.2.0",
-    "react-native-svg": "^12.1.1",
-    "react-native-swipe-list-view": "^3.2.7",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
