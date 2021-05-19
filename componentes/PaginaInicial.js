@@ -22,35 +22,14 @@ import * as SecureStore from "expo-secure-store";
 
 const Stack = createStackNavigator();
 
-async function getValueFor(key) {
-    return await SecureStore.getItemAsync(key);
-}
-
-async function save(key, value) {
-    await SecureStore.setItemAsync(key, value);
-}
-
 export default class PaginaInicial extends React.Component {
     constructor(props) {
         super(props);
         this.handler = this.handler.bind(this);
-
-        let email = getValueFor("email");
-        let senha = getValueFor("senha");
-        console.log("" + email);
-        console.log("" + senha);
-        if (email && senha) {
-            if (this.checkDados(email, senha)) {
-                console.log("dados ok");
-                this.state = { isLoggedIn: true, userEmail: email };
-            } else {
-                save("email", "");
-                save("senha", "");
-                this.state = { isLoggedIn: true, userEmail: "" };
-            }
-        } else {
-            this.state = { isLoggedIn: true, userEmail: "" };
-        }
+        this.state = {
+            isLoggedIn: true,
+            userEmail: "aa@aa.aa",
+        };
     }
 
     handler(logade, email) {
@@ -88,6 +67,7 @@ export default class PaginaInicial extends React.Component {
                                 <PaginaPerfil
                                     {...props}
                                     handler={this.handler}
+                                    userEmail={this.state.userEmail}
                                 />
                             )}
                         </Stack.Screen>
@@ -125,30 +105,5 @@ export default class PaginaInicial extends React.Component {
                 </Stack.Navigator>
             </NavigationContainer>
         );
-    }
-
-    checkDados(email, senha) {
-        fetch("https://studiistcc.000webhostapp.com/php/login_mobile.php", {
-            method: "post",
-            header: {
-                Accept: "application/json",
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-                email: email,
-                senha: senha,
-            }),
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                if (responseJson == 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
     }
 }

@@ -18,6 +18,12 @@ import {
 
 import { PieChart } from "react-native-chart-kit";
 
+import {
+    deletarContaServidor,
+    alterarEmailRemoto,
+    alterarSenhaRemoto,
+} from "./AcoesRemotas";
+
 const screenWidth = Dimensions.get("window").width;
 
 const data = [
@@ -92,12 +98,37 @@ export default class ListIconExample extends Component {
     alterarSenha() {
         RootNavigation.navigate("AlterarSenha");
     }
-    excluirConta() {}
+
+    excluirConta() {
+        Alert.alert(
+            "Tem certeza que deseja excluir sua conta?",
+            "Esta ação é irreversível.",
+            [
+                {
+                    text: "Cancelar",
+                    onPress: () => {
+                        return;
+                    },
+                    style: "cancel",
+                },
+                {
+                    text: "Sim",
+                    onPress: () =>
+                        deletarContaServidor(
+                            this.props.handler,
+                            this.props.userEmail
+                        ),
+                },
+            ]
+        );
+    }
+
     logout() {
         save("email", "");
         save("senha", "");
         this.props.handler(false, "");
     }
+
     confirmacao() {
         Alert.alert("Sair", "Tem certeza que deseja sair?",
         [
@@ -105,7 +136,7 @@ export default class ListIconExample extends Component {
         ]
         );
     }
-    
+
     render() {
         return (
             <Container>
