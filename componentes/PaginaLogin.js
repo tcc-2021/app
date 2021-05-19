@@ -17,6 +17,8 @@ import {
 import * as RootNavigation from "./RootNavigation";
 import { LinearGradient } from "expo-linear-gradient";
 
+import { loginUsuarioRemoto } from "./AcoesRemotas";
+
 export default class PaginaLogin extends React.Component {
     constructor(props) {
         super(props);
@@ -27,34 +29,7 @@ export default class PaginaLogin extends React.Component {
             return;
         }
 
-        fetch("https://studiistcc.000webhostapp.com/php/login_mobile.php", {
-            method: "post",
-            header: {
-                Accept: "application/json",
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-                email: this.email,
-                senha: this.senha,
-            }),
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                if (responseJson == 0) {
-                    this.props.handler(true, this.email);
-                } else {
-                    alert(
-                        "Seu e-mail ou senha estão errados ou são inválidos."
-                    );
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
-
-    sucesso() {
-        this.props.handler(true, "aaa@aaa.com", "aaaa");
+        loginUsuarioRemoto(this.props.handler, this.email, this.senha);
     }
 
     render() {

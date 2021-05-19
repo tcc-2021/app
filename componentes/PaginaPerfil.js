@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, Alert } from "react-native";
 
 import {
     Container,
@@ -17,6 +17,12 @@ import {
 } from "native-base";
 
 import { PieChart } from "react-native-chart-kit";
+
+import {
+    deletarContaServidor,
+    alterarEmailRemoto,
+    alterarSenhaRemoto,
+} from "./AcoesRemotas";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -78,15 +84,64 @@ async function save(key, value) {
 
 export default class ListIconExample extends Component {
     alterarEmail() {
-        alert("teste");
+        alterarEmailRemoto(
+            this.props.handler,
+            this.props.userEmail,
+            "novo@eaaaamail.com"
+        );
     }
-    alterarSenha() {}
-    excluirConta() {}
+
+    alterarSenha() {
+        alterarSenhaRemoto(
+            this.props.handler,
+            this.props.userEmail,
+            "senhanova",
+            "senhanovanova"
+        );
+    }
+
+    excluirConta() {
+        Alert.alert(
+            "Tem certeza que deseja excluir sua conta?",
+            "Esta ação é irreversível.",
+            [
+                {
+                    text: "Cancelar",
+                    onPress: () => {
+                        return;
+                    },
+                    style: "cancel",
+                },
+                {
+                    text: "Sim",
+                    onPress: () =>
+                        deletarContaServidor(
+                            this.props.handler,
+                            this.props.userEmail
+                        ),
+                },
+            ]
+        );
+    }
+
+    excluirContaRemota() {
+        const sucesso = deletarContaServidor(this.props.userEmail);
+        console.log(sucesso);
+        if (sucesso) {
+            this.props.handler(false, "");
+        } else {
+            alert(
+                "Um erro ocorreu durante a exclusão. Tente novamente mais tarde."
+            );
+        }
+    }
+
     logout() {
         save("email", "");
         save("senha", "");
         this.props.handler(false, "");
     }
+
     render() {
         return (
             <Container>
