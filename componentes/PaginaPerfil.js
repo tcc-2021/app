@@ -90,7 +90,7 @@ export default class ListIconExample extends Component {
     render() {
         return (
             <Container>
-                <Content style={{ marginTop: 25 }}>
+                <Content style={{ paddingTop: 10 }}>
                     <ListItem icon onPress={() => this.alterarEmail()}>
                         <Left>
                             <Button style={{ backgroundColor: "#007AFF" }}>

@@ -212,15 +212,17 @@ export default class PaginaSimulado extends Component {
                             name="arrow-forward-outline"
                         ></Icon>
                     </GradientButton>
-                    <Image
-                        source={require("../assets/fundo-login.png")}
-                        style={{
-                            width: 170,
-                            height: 65,
-                            transform: [{ scaleX: -1 }],
-                            marginTop: -55,
-                        }}
-                    ></Image>
+                    <View style={{marginTop: 60}}> 
+                        <Image
+                            source={require("../assets/fundo-login.png")}
+                            style={{
+                                width: 170,
+                                height: 65,
+                                transform: [{ scaleX: -1 }],
+                                //padding: 100,
+                            }}
+                        ></Image>
+                    </View>
                 </ScrollView>
             </Container>
         );
@@ -232,8 +234,9 @@ const styles = StyleSheet.create({
         fontFamily: "Lato",
         fontSize: 30,
         textAlign: "center",
-        marginTop: 20,
-        marginBottom: 20,
+        //marginTop: 20,
+        //marginBottom: 20,
+        padding: 40,
     },
     continuarBtn: {
         width: 60,

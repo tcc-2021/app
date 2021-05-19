@@ -64,7 +64,7 @@ export default class PaginaInicial extends React.Component {
                 <NavigationContainer ref={navigationRef}>
                     <Stack.Navigator initialRouteName="Simulado">
                         <Stack.Screen
-                            options={{ headerShown: false }}
+                            //options={{ headerShown: false }}
                             name="Exercicios"
                             component={PaginaExercicios}
                         />
@@ -74,12 +74,12 @@ export default class PaginaInicial extends React.Component {
                             component={PaginaSimulado}
                         />
                         <Stack.Screen
-                            options={{ headerShown: false }}
+                            //options={{ headerShown: false }}
                             name="Biblioteca"
                             component={PaginaBiblioteca}
                         />
                         <Stack.Screen
-                            options={{ headerShown: false }}
+                            //options={{ headerShown: false }}
                             name="Perfil"
                         >
                             {(props) => (
