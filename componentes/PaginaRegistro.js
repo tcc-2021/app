@@ -18,13 +18,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import * as RootNavigation from "./RootNavigation";
 
-import * as SecureStore from "expo-secure-store";
-async function save(key, value) {
-    await SecureStore.setItemAsync(key, value);
-}
-async function getValueFor(key) {
-    return await SecureStore.getItemAsync(key);
-}
+import { registroUsuarioRemoto } from "./AcoesRemotas";
 
 export default class PaginaRegistro extends React.Component {
     registrarUsuario = async () => {
@@ -35,36 +29,12 @@ export default class PaginaRegistro extends React.Component {
             (this.email != "" || this.nome != "" || this.senha != "") &&
             re.test(this.email.toLocaleLowerCase())
         ) {
-            fetch(
-                "https://studiistcc.000webhostapp.com/php/cadastro_mobile.php",
-                {
-                    method: "post",
-                    header: {
-                        Accept: "application/json",
-                        "Content-type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        nome: this.nome,
-                        email: this.email,
-                        senha: this.senha,
-                    }),
-                }
-            )
-                .then((response) => response.json())
-                .then((responseJson) => {
-                    if (responseJson === 0) {
-                        save("email", this.email);
-                        save("senha", this.senha);
-
-                        console.log(getValueFor("senha"));
-                        this.props.handler(true, this.email);
-                    } else {
-                        alert(responseJson);
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+            registroUsuarioRemoto(
+                this.props.handler,
+                this.nome,
+                this.email,
+                this.senha
+            );
         } else {
             alert("Verifique seus dados.");
         }
