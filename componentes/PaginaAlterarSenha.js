@@ -1,10 +1,23 @@
 import * as React from "react";
-import {StyleSheet, ScrollView} from "react-native";
+import {StyleSheet, ScrollView, Alert} from "react-native";
 import {View, Text, Container, Button, Content, Form, Item, Icon, Input} from "native-base";
 
 export default class AlterarSenha extends React.Component {
 	constructor(props) {
 		super(props);
+	}
+
+	confirmacao() {
+		Alert.alert("Confirmar", "Sua senha será alterada, tem certeza das modificações?",
+		[
+			{
+				text: "Sim"
+			},
+
+			{
+				text: "Não"
+			},
+		]);
 	}
 
 	render() {
@@ -16,16 +29,18 @@ export default class AlterarSenha extends React.Component {
 						<View style={{margin: 20}}>
 							<Item>
 								<Icon active name="key"/>
-								<Input secureTextEntry placeholder="Senha atual"/>
+								<Input secureTextEntry placeholder="Senha atual"
+								onChangeText={(senhaAtual) => (this.senhaAtual = senhaAtual)}/>
 							</Item>
 							
 							<Item>
 								<Icon active name="star"/>
-								<Input secureTextEntry placeholder="Nova senha"/>
+								<Input secureTextEntry placeholder="Nova senha"
+								onChangeText={(novaSenha) => (this.novaSenha = novaSenha)}/>
 							</Item>
 							
 							<View style={{marginTop: 30}}>
-								<Button block success>
+								<Button block success onPress={this.confirmacao.bind(this)}>
 									<Text> Confirmar </Text>
 								</Button>
 							</View>

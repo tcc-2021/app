@@ -1,10 +1,23 @@
 import * as React from "react";
-import {StyleSheet, ScrollView, TextInput, Image} from "react-native";
+import {StyleSheet, ScrollView, TextInput, Image, Alert} from "react-native";
 import {View, Text, Container, Content, Form, Item, Icon, Input, Label, Button} from "native-base";
 
 export default class AlterarEmail extends React.Component {
 	constructor(props) {
 		super(props);
+	}
+
+	confirmacao() {
+		Alert.alert("Confirmar", "Seu e-mail será alterado, tem certeza das modificações?", 
+		[
+			{
+				text: "Sim"
+			},
+
+			{
+				text: "Não"
+			},
+		]);
 	}
 
 	render() {
@@ -25,7 +38,7 @@ export default class AlterarEmail extends React.Component {
 							</Item>
 							
 							<View style={{marginTop: 30}}>
-								<Button block success>
+								<Button block success onPress={this.confirmacao.bind(this)}>
 									<Text> Confirmar </Text>
 								</Button>
 							</View>
