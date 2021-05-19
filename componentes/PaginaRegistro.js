@@ -208,14 +208,16 @@ export default class PaginaRegistro extends React.Component {
 
                     {/*</View>*/}
 
-                    <Image
-                        source={require("../assets/fundo-login.png")}
-                        style={{
-                            width: 325,
-                            height: 123,
-                            alignSelf: "flex-end",
-                        }}
-                    ></Image>
+                    <View style={{marginTop: 164}}>
+                        <Image
+                            source={require("../assets/fundo-login.png")}
+                            style={{
+                                width: 325,
+                                height: 123,
+                                alignSelf: "flex-end",
+                            }}
+                        ></Image>
+                    </View>
                 </Content>
             </Container>
         );

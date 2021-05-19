@@ -164,15 +164,17 @@ export default class PaginaLogin extends React.Component {
                     >
                         <Text style={{ color: "#7c32ff" }}>Registre-se</Text>
                     </Button>
-                    <Image
-                        source={require("../assets/fundo-login.png")}
-                        style={{
-                            width: 325,
-                            height: 123,
-                            alignSelf: "flex-end",
-                            zIndex: 20,
-                        }}
-                    ></Image>
+                    <View style={{marginTop: 246}}>
+                        <Image
+                            source={require("../assets/fundo-login.png")}
+                            style={{
+                                width: 325,
+                                height: 123,
+                                alignSelf: "flex-end",
+                                zIndex: 20,
+                            }}
+                        ></Image>
+                    </View>
                 </Content>
             </Container>
         );
