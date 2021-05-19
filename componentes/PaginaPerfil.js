@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, Alert } from "react-native";
 
 import {
     Container,
@@ -76,17 +76,36 @@ async function save(key, value) {
     await SecureStore.setItemAsync(key, value);
 }
 
+import * as RootNavigation from "./RootNavigation.js";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import PaginaAlterarEmail from "./PaginaAlterarEmail.js"
+
+const Stack = createStackNavigator();
+
 export default class ListIconExample extends Component {
     alterarEmail() {
-        alert("teste");
+        RootNavigation.navigate("AlterarEmail");
     }
-    alterarSenha() {}
+
+    alterarSenha() {
+        RootNavigation.navigate("AlterarSenha");
+    }
     excluirConta() {}
     logout() {
         save("email", "");
         save("senha", "");
         this.props.handler(false, "");
     }
+    confirmacao() {
+        Alert.alert("Sair", "Tem certeza que deseja sair?",
+        [
+            {text: "Sim", onPress: () => this.logout()}, {text: "Não"}
+        ]
+        );
+    }
+    
     render() {
         return (
             <Container>
@@ -130,7 +149,7 @@ export default class ListIconExample extends Component {
                             <Icon active name="arrow-forward" />
                         </Right>
                     </ListItem>
-                    <ListItem icon onPress={this.logout.bind(this)}>
+                    <ListItem icon onPress={this.confirmacao.bind(this)}>
                         <Left>
                             <Button style={{ backgroundColor: "#DC143C" }}>
                                 <Icon active name="remove" />

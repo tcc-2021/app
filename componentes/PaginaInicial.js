@@ -8,6 +8,8 @@ import PaginaExercicios from "./PaginaExercicios.js";
 import PaginaSimulado from "./PaginaSimulado.js";
 import PaginaBiblioteca from "./PaginaBiblioteca.js";
 import PaginaPerfil from "./PaginaPerfil.js";
+import PaginaAlterarEmail from "./PaginaAlterarEmail.js";
+import PaginaAlterarSenha from "./PaginaAlterarSenha.js";
 
 import PaginaLogin from "./PaginaLogin";
 import PaginaRegistro from "./PaginaRegistro";
@@ -78,7 +80,7 @@ export default class PaginaInicial extends React.Component {
                             name="Biblioteca"
                             component={PaginaBiblioteca}
                         />
-                        <Stack.Screen
+                        <Stack.Screen options={{title: "Configurações do perfil"}}
                             //options={{ headerShown: false }}
                             name="Perfil"
                         >
@@ -89,6 +91,16 @@ export default class PaginaInicial extends React.Component {
                                 />
                             )}
                         </Stack.Screen>
+
+                        <Stack.Screen options={{title: "Configurações"}}
+                        	name="AlterarEmail"
+                        	component={PaginaAlterarEmail}
+                        />
+
+                        <Stack.Screen options={{title: "Configurações"}}
+                        	name="AlterarSenha"
+                        	component={PaginaAlterarSenha}
+                        />
                     </Stack.Navigator>
                     <IconFooter></IconFooter>
                 </NavigationContainer>
