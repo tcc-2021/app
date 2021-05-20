@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 
 import {
     View,
@@ -8,8 +8,9 @@ import {
     Dimensions,
     Image,
     ScrollView,
+    BackHandler,
 } from "react-native";
-
+import { useIsFocused } from "@react-navigation/native";
 // Tentativa de suportar o máximo de viewports possíveis, provavelmente falha por conta do - 40. rever isso
 
 const ContainerLado = Dimensions.get("window").width / 2 - 40;

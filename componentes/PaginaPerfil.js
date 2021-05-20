@@ -86,7 +86,7 @@ import * as RootNavigation from "./RootNavigation.js";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import PaginaAlterarEmail from "./PaginaAlterarEmail.js"
+import PaginaAlterarEmail from "./PaginaAlterarEmail.js";
 
 const Stack = createStackNavigator();
 
@@ -130,11 +130,10 @@ export default class ListIconExample extends Component {
     }
 
     confirmacao() {
-        Alert.alert("Sair", "Tem certeza que deseja sair?",
-        [
-            {text: "Sim", onPress: () => this.logout()}, {text: "Não"}
-        ]
-        );
+        Alert.alert("Sair", "Tem certeza que deseja sair?", [
+            { text: "Não" },
+            { text: "Sim", onPress: () => this.logout() },
+        ]);
     }
 
     render() {
