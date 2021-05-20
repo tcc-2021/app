@@ -212,14 +212,13 @@ export default class PaginaSimulado extends Component {
                             name="arrow-forward-outline"
                         ></Icon>
                     </GradientButton>
-                    <View style={{ justifyContent: "flex-end" }}>
+                    <View style={{ marginTop: 60 }}>
                         <Image
                             source={require("../assets/fundo-login.png")}
                             style={{
                                 width: 190,
                                 height: 75,
                                 transform: [{ scaleX: -1 }],
-                                //padding: 100,
                             }}
                         ></Image>
                     </View>
