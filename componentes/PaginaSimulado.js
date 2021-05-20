@@ -18,9 +18,8 @@ import GradientButton from "react-native-gradient-buttons";
 export default class PaginaSimulado extends Component {
     constructor(props) {
         super(props);
-        {
-            /* Mantém o estado das checkboxes selecionadas */
-        }
+
+        // Mantém o estado das checkboxes selecionadas
         this.state = {
             portugues: true,
             matematica: true,
@@ -70,7 +69,7 @@ export default class PaginaSimulado extends Component {
         return (
             <Container>
                 <ScrollView
-                    style={{ marginTop: -10 }}
+                    //style={{ marginTop: 13 }}
                     showsVerticalScrollIndicator={false}
                 >
                     <Text style={styles.title}>
@@ -212,14 +211,13 @@ export default class PaginaSimulado extends Component {
                             name="arrow-forward-outline"
                         ></Icon>
                     </GradientButton>
-                    <View style={{ justifyContent: "flex-end" }}>
+                    <View style={{ marginTop: 60 }}>
                         <Image
                             source={require("../assets/fundo-login.png")}
                             style={{
-                                width: 170,
-                                height: 65,
+                                width: 190,
+                                height: 75,
                                 transform: [{ scaleX: -1 }],
-                                //padding: 100,
                             }}
                         ></Image>
                     </View>
@@ -236,8 +234,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         //marginTop: 20,
         //marginBottom: 20,
-        padding: 40,
-        paddingBottom: 20,
+        padding: 11,
     },
     continuarBtn: {
         width: 60,
