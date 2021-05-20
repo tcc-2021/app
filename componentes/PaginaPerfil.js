@@ -82,21 +82,18 @@ async function save(key, value) {
     await SecureStore.setItemAsync(key, value);
 }
 
-import * as RootNavigation from "./RootNavigation.js";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-
-import PaginaAlterarEmail from "./PaginaAlterarEmail.js";
-
-const Stack = createStackNavigator();
-
 export default class ListIconExample extends Component {
     alterarEmail() {
-        RootNavigation.navigate("AlterarEmail");
+        this.props.navigation.navigate("AlterarEmail", {
+            handler: this.props.handler,
+        });
     }
 
     alterarSenha() {
-        RootNavigation.navigate("AlterarSenha");
+        this.props.navigation.navigate("AlterarSenha", {
+            handler: this.props.handler,
+            email: this.props.userEmail,
+        });
     }
 
     excluirConta() {
@@ -106,9 +103,6 @@ export default class ListIconExample extends Component {
             [
                 {
                     text: "Cancelar",
-                    onPress: () => {
-                        return;
-                    },
                     style: "cancel",
                 },
                 {
@@ -131,7 +125,7 @@ export default class ListIconExample extends Component {
 
     confirmacao() {
         Alert.alert("Sair", "Tem certeza que deseja sair?", [
-            { text: "Não" },
+            { text: "Cancelar", style: "cancel" },
             { text: "Sim", onPress: () => this.logout() },
         ]);
     }

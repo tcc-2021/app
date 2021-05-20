@@ -70,7 +70,7 @@ export default class PaginaSimulado extends Component {
         return (
             <Container>
                 <ScrollView
-                    style={{ marginTop: 13 }}
+                    style={{ marginTop: -10 }}
                     showsVerticalScrollIndicator={false}
                 >
                     <Text style={styles.title}>
@@ -232,11 +232,12 @@ export default class PaginaSimulado extends Component {
 const styles = StyleSheet.create({
     title: {
         fontFamily: "Lato",
-        fontSize: 30,
+        fontSize: 25,
         textAlign: "center",
         //marginTop: 20,
         //marginBottom: 20,
         padding: 40,
+        paddingBottom: 20,
     },
     continuarBtn: {
         width: 60,

@@ -26,6 +26,7 @@ export default class PaginaLogin extends React.Component {
 
     loginUsuario() {
         if (this.email == "" || this.senha == "") {
+            alert("Verifique seus dados.");
             return;
         }
 
@@ -134,22 +135,20 @@ export default class PaginaLogin extends React.Component {
                         block
                         style={[styles.googleBtn, { borderColor: "#7c32ff" }]}
                         onPress={() => {
-                            RootNavigation.navigate("Registro");
+                            this.props.navigation.navigate("Registro");
                         }}
                     >
                         <Text style={{ color: "#7c32ff" }}>Registre-se</Text>
                     </Button>
-                    <View style={{ marginTop: 246 }}>
-                        <Image
-                            source={require("../assets/fundo-login.png")}
-                            style={{
-                                width: 325,
-                                height: 123,
-                                alignSelf: "flex-end",
-                                zIndex: 20,
-                            }}
-                        ></Image>
-                    </View>
+                    <Image
+                        source={require("../assets/fundo-login.png")}
+                        style={{
+                            width: 325,
+                            height: 123,
+                            position: "relative",
+                            alignSelf: "flex-end",
+                        }}
+                    ></Image>
                 </Content>
             </Container>
         );
@@ -158,7 +157,7 @@ export default class PaginaLogin extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#FFF",
+        height: "150%",
     },
     titleLogin: {
         fontFamily: "Lato",

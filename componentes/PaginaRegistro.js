@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, Image } from "react-native";
+import { StyleSheet, TextInput, Image, Dimensions } from "react-native";
 import {
     Container,
     Content,
@@ -20,6 +20,8 @@ import * as RootNavigation from "./RootNavigation";
 
 import { registroUsuarioRemoto } from "./AcoesRemotas";
 
+const windowHeight = Dimensions.get("window").height;
+
 export default class PaginaRegistro extends React.Component {
     registrarUsuario = async () => {
         const re =
@@ -27,7 +29,7 @@ export default class PaginaRegistro extends React.Component {
 
         if (
             (this.email != "" || this.nome != "" || this.senha != "") &&
-            re.test(this.email.toLocaleLowerCase())
+            re.test(this.email)
         ) {
             registroUsuarioRemoto(
                 this.props.handler,
@@ -178,7 +180,7 @@ export default class PaginaRegistro extends React.Component {
 
                     {/*</View>*/}
 
-                    <View style={{marginTop: 164}}>
+                    <View style={styles.img}>
                         <Image
                             source={require("../assets/fundo-login.png")}
                             style={{
@@ -257,5 +259,9 @@ const styles = StyleSheet.create({
         width: "40%",
         backgroundColor: "#FFF",
         borderWidth: 1,
+    },
+    img: {
+        position: "relative",
+        justifyContent: "flex-end",
     },
 });

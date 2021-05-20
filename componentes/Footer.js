@@ -26,7 +26,6 @@ export default function IconFooter(props) {
 
     React.useEffect(() => {
         props.navigationRef.current?.addListener("state", (e) => {
-            console.log(e.data.state);
             setRouteName(props.navigationRef.current?.getCurrentRoute().name);
         });
     });
