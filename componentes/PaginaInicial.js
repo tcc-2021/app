@@ -50,7 +50,7 @@ export default class PaginaInicial extends React.Component {
                             component={PaginaExercicios}
                         />
                         <Stack.Screen
-                            options={{ headerShown: false }}
+                            //options={{ headerShown: false }}
                             name="Simulado"
                             component={PaginaSimulado}
                         />
