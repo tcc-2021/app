@@ -20,8 +20,6 @@ import { navigationRef } from "./RootNavigation";
 
 import * as SecureStore from "expo-secure-store";
 
-const Stack = createStackNavigator();
-
 export default class PaginaInicial extends React.Component {
     constructor(props) {
         super(props);
@@ -29,6 +27,7 @@ export default class PaginaInicial extends React.Component {
         this.state = {
             isLoggedIn: true,
             userEmail: "aa@aa.aa",
+            currPage: 0,
         };
     }
 
@@ -40,27 +39,28 @@ export default class PaginaInicial extends React.Component {
     }
 
     render() {
+        const Stack = createStackNavigator();
+        const navigationRef = React.createRef();
+
         if (this.state.isLoggedIn) {
             return (
                 <NavigationContainer ref={navigationRef}>
                     <Stack.Navigator initialRouteName="Simulado">
                         <Stack.Screen
-                            //options={{ headerShown: false }}
                             name="Exercicios"
                             component={PaginaExercicios}
                         />
+
                         <Stack.Screen
-                            //options={{ headerShown: false }}
+                            name="Biblioteca"
+                            component={PaginaBiblioteca}
+                        />
+                        <Stack.Screen
                             name="Simulado"
                             component={PaginaSimulado}
                         />
                         <Stack.Screen
-                            //options={{ headerShown: false }}
-                            name="Biblioteca"
-                            component={PaginaBiblioteca}
-                        />
-                        <Stack.Screen options={{title: "Configurações do perfil"}}
-                            //options={{ headerShown: false }}
+                            options={{ title: "Perfil" }}
                             name="Perfil"
                         >
                             {(props) => (
@@ -72,17 +72,19 @@ export default class PaginaInicial extends React.Component {
                             )}
                         </Stack.Screen>
 
-                        <Stack.Screen options={{title: "Configurações"}}
-                        	name="AlterarEmail"
-                        	component={PaginaAlterarEmail}
+                        <Stack.Screen
+                            options={{ title: "Configurações" }}
+                            name="AlterarEmail"
+                            component={PaginaAlterarEmail}
                         />
 
-                        <Stack.Screen options={{title: "Configurações"}}
-                        	name="AlterarSenha"
-                        	component={PaginaAlterarSenha}
+                        <Stack.Screen
+                            options={{ title: "Configurações" }}
+                            name="AlterarSenha"
+                            component={PaginaAlterarSenha}
                         />
                     </Stack.Navigator>
-                    <IconFooter></IconFooter>
+                    <IconFooter navigationRef={navigationRef}></IconFooter>
                 </NavigationContainer>
             );
         }

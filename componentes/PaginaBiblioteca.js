@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import {
     Animated,
     Image,
@@ -7,6 +7,8 @@ import {
     TouchableHighlight,
     View,
     Linking,
+    BackHandler,
+    Alert,
 } from "react-native";
 
 import {
@@ -21,7 +23,10 @@ import {
     Right,
 } from "native-base";
 
-export default function PaginaBiblioteca() {
+import * as RootNavigation from "./RootNavigation";
+import { useFocusEffect } from "@react-navigation/native";
+
+export default function PaginaBiblioteca(props) {
     return (
         <View style={styles.container}>
             <Content>

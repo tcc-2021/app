@@ -19,105 +19,79 @@ import * as RootNavigation from "./RootNavigation";
 
 import temas from "../temas-native-base/Tema.js";
 
-export default class IconFooter extends React.Component {
-    constructor(props) {
-        super(props);
+import { useNavigation } from "@react-navigation/native";
 
-        this.state = {
-            tab1: false,
-            tab2: false,
-            tab3: true,
-            tab4: false,
-        };
-    }
-    toggleTab1() {
-        this.setState({
-            tab1: true,
-            tab2: false,
-            tab3: false,
-            tab4: false,
-        });
-        RootNavigation.navigate("Exercicios");
-    }
-    toggleTab2() {
-        this.setState({
-            tab1: false,
-            tab2: true,
-            tab3: false,
-            tab4: false,
-        });
-        RootNavigation.navigate("Biblioteca");
-    }
-    toggleTab3() {
-        this.setState({
-            tab1: false,
-            tab2: false,
-            tab3: true,
-            tab4: false,
-        });
-        RootNavigation.navigate("Simulado");
-    }
-    toggleTab4() {
-        this.setState({
-            tab1: false,
-            tab2: false,
-            tab3: false,
-            tab4: true,
-        });
-        RootNavigation.navigate("Perfil");
-    }
-    render() {
-        return (
-            <View>
-                <Content padder />
+export default function IconFooter(props) {
+    const [routeName, setRouteName] = React.useState("Simulado");
 
-                <Footer>
-                    <FooterTab
-                        theme={temas}
+    React.useEffect(() => {
+        props.navigationRef.current?.addListener("state", (e) => {
+            console.log(e.data.state);
+            setRouteName(props.navigationRef.current?.getCurrentRoute().name);
+        });
+    });
+
+    return (
+        <View>
+            <Content padder />
+
+            <Footer>
+                <FooterTab theme={temas} style={{ backgroundColor: "#7c32ff" }}>
+                    <Button
+                        active={routeName == "Exercicios"}
+                        onPress={() =>
+                            props.navigationRef.current?.navigate("Exercicios")
+                        }
                         style={{ backgroundColor: "#7c32ff" }}
+                        vertical
                     >
-                        <Button
-                            active={this.state.tab1}
-                            onPress={() => this.toggleTab1()}
-                            style={{ backgroundColor: "#7c32ff" }}
-                            vertical
-                        >
-                            <Icon active={this.state.tab1} name="book" />
-                            <Text style={{ fontSize: 10 }}>Exercícios</Text>
-                        </Button>
-                        <Button
-                            active={this.state.tab2}
-                            onPress={() => this.toggleTab2()}
-                            style={{ backgroundColor: "#7c32ff" }}
-                            vertical
-                        >
-                            <Icon active={this.state.tab2} name="library" />
-                            <Text style={{ fontSize: 10 }}>Biblioteca</Text>
-                        </Button>
-                        <Button
-                            active={this.state.tab3}
-                            onPress={() => this.toggleTab3()}
-                            style={{ backgroundColor: "#7c32ff" }}
-                            vertical
-                        >
-                            <Icon active={this.state.tab3} name="trending-up" />
-                            <Text style={{ fontSize: 10 }}>Simulado</Text>
-                        </Button>
-                        <Button
-                            active={this.state.tab4}
-                            onPress={() => this.toggleTab4()}
-                            style={{ backgroundColor: "#7c32ff" }}
-                            vertical
-                        >
-                            <Icon
-                                active={this.state.tab4}
-                                name="person-circle-outline"
-                            />
-                            <Text style={{ fontSize: 10 }}>Perfil</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
-            </View>
-        );
-    }
+                        <Icon active={routeName == "Exercicios"} name="book" />
+                        <Text style={{ fontSize: 10 }}>Exercícios</Text>
+                    </Button>
+                    <Button
+                        active={routeName == "Biblioteca"}
+                        onPress={() =>
+                            props.navigationRef.current?.navigate("Biblioteca")
+                        }
+                        style={{ backgroundColor: "#7c32ff" }}
+                        vertical
+                    >
+                        <Icon
+                            active={routeName == "Biblioteca"}
+                            name="library"
+                        />
+                        <Text style={{ fontSize: 10 }}>Biblioteca</Text>
+                    </Button>
+                    <Button
+                        active={routeName == "Simulado"}
+                        onPress={() =>
+                            props.navigationRef.current?.navigate("Simulado")
+                        }
+                        style={{ backgroundColor: "#7c32ff" }}
+                        vertical
+                    >
+                        <Icon
+                            active={routeName == "Simulado"}
+                            name="trending-up"
+                        />
+                        <Text style={{ fontSize: 10 }}>Simulado</Text>
+                    </Button>
+                    <Button
+                        active={routeName == "Perfil"}
+                        onPress={() =>
+                            props.navigationRef.current?.navigate("Perfil")
+                        }
+                        style={{ backgroundColor: "#7c32ff" }}
+                        vertical
+                    >
+                        <Icon
+                            active={routeName == "Perfil"}
+                            name="person-circle-outline"
+                        />
+                        <Text style={{ fontSize: 10 }}>Perfil</Text>
+                    </Button>
+                </FooterTab>
+            </Footer>
+        </View>
+    );
 }
