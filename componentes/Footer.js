@@ -37,7 +37,10 @@ export default function IconFooter(props) {
             <Footer>
                 <FooterTab theme={temas} style={{ backgroundColor: "#7c32ff" }}>
                     <Button
-                        active={routeName == "Exercicios"}
+                        active={
+                            routeName == "Exercicios" ||
+                            routeName == "RenderExercicios"
+                        }
                         onPress={() =>
                             props.navigationRef.current?.navigate("Exercicios")
                         }
@@ -62,7 +65,10 @@ export default function IconFooter(props) {
                         <Text style={{ fontSize: 10 }}>Biblioteca</Text>
                     </Button>
                     <Button
-                        active={routeName == "Simulado"}
+                        active={
+                            routeName == "Simulado" ||
+                            routeName == "RenderSimulado"
+                        }
                         onPress={() =>
                             props.navigationRef.current?.navigate("Simulado")
                         }

@@ -10,7 +10,7 @@ import {
     ScrollView,
     BackHandler,
 } from "react-native";
-import { useIsFocused } from "@react-navigation/native";
+
 // Tentativa de suportar o máximo de viewports possíveis, provavelmente falha por conta do - 40. rever isso
 
 const ContainerLado = Dimensions.get("window").width / 2 - 40;
@@ -19,7 +19,6 @@ export default class PaginaExercicios extends Component {
     render() {
         return (
             <View>
-                {/*<IconHeader></IconHeader>*/}
                 <ScrollView
                     style={styles.scrollView}
                     showsVerticalScrollIndicator={false}
@@ -35,7 +34,15 @@ export default class PaginaExercicios extends Component {
                     >
                         <View style={styles.columnView}>
                             <View style={styles.contIndividual}>
-                                <TouchableOpacity style={styles.btn}>
+                                <TouchableOpacity
+                                    style={styles.btn}
+                                    onPress={() =>
+                                        this.props.navigation.navigate(
+                                            "RenderExercicio",
+                                            { materia: "portugues" }
+                                        )
+                                    }
+                                >
                                     <Image
                                         style={styles.imgbio}
                                         source={require("../assets/portugues.png")}
@@ -45,7 +52,15 @@ export default class PaginaExercicios extends Component {
                             </View>
 
                             <View style={styles.contIndividual}>
-                                <TouchableOpacity style={styles.btn}>
+                                <TouchableOpacity
+                                    style={styles.btn}
+                                    onPress={() =>
+                                        this.props.navigation.navigate(
+                                            "RenderExercicio",
+                                            { materia: "biologia" }
+                                        )
+                                    }
+                                >
                                     <Image
                                         style={styles.imgbio}
                                         source={require("../assets/biologia.png")}
@@ -55,7 +70,15 @@ export default class PaginaExercicios extends Component {
                             </View>
 
                             <View style={styles.contIndividual}>
-                                <TouchableOpacity style={styles.btn}>
+                                <TouchableOpacity
+                                    style={styles.btn}
+                                    onPress={() =>
+                                        this.props.navigation.navigate(
+                                            "RenderExercicio",
+                                            { materia: "fisica" }
+                                        )
+                                    }
+                                >
                                     <Image
                                         style={styles.imgbio}
                                         source={require("../assets/fisica.png")}
@@ -65,7 +88,15 @@ export default class PaginaExercicios extends Component {
                             </View>
 
                             <View style={styles.contIndividual}>
-                                <TouchableOpacity style={styles.btn}>
+                                <TouchableOpacity
+                                    style={styles.btn}
+                                    onPress={() =>
+                                        this.props.navigation.navigate(
+                                            "RenderExercicio",
+                                            { materia: "ingles" }
+                                        )
+                                    }
+                                >
                                     <Image
                                         style={styles.imgbio}
                                         source={require("../assets/ingles.png")}
@@ -77,7 +108,15 @@ export default class PaginaExercicios extends Component {
 
                         <View style={styles.columnView}>
                             <View style={styles.contIndividual}>
-                                <TouchableOpacity style={styles.btn}>
+                                <TouchableOpacity
+                                    style={styles.btn}
+                                    onPress={() =>
+                                        this.props.navigation.navigate(
+                                            "RenderExercicio",
+                                            { materia: "matematica" }
+                                        )
+                                    }
+                                >
                                     <Image
                                         style={styles.imgbio}
                                         source={require("../assets/matematica.png")}
@@ -86,7 +125,15 @@ export default class PaginaExercicios extends Component {
                                 <Text style={styles.legenda}>Matemática</Text>
                             </View>
                             <View style={styles.contIndividual}>
-                                <TouchableOpacity style={styles.btn}>
+                                <TouchableOpacity
+                                    style={styles.btn}
+                                    onPress={() =>
+                                        this.props.navigation.navigate(
+                                            "RenderExercicio",
+                                            { materia: "geografia" }
+                                        )
+                                    }
+                                >
                                     <Image
                                         style={styles.imgbio}
                                         source={require("../assets/geografia.png")}
@@ -96,7 +143,15 @@ export default class PaginaExercicios extends Component {
                             </View>
 
                             <View style={styles.contIndividual}>
-                                <TouchableOpacity style={styles.btn}>
+                                <TouchableOpacity
+                                    style={styles.btn}
+                                    onPress={() =>
+                                        this.props.navigation.navigate(
+                                            "RenderExercicio",
+                                            { materia: "quimica" }
+                                        )
+                                    }
+                                >
                                     <Image
                                         style={styles.imgbio}
                                         source={require("../assets/quimica.png")}
@@ -106,7 +161,15 @@ export default class PaginaExercicios extends Component {
                             </View>
 
                             <View style={styles.contIndividual}>
-                                <TouchableOpacity style={styles.btn}>
+                                <TouchableOpacity
+                                    style={styles.btn}
+                                    onPress={() =>
+                                        this.props.navigation.navigate(
+                                            "RenderExercicio",
+                                            { materia: "historia" }
+                                        )
+                                    }
+                                >
                                     <Image
                                         style={styles.imgbio}
                                         source={require("../assets/historia.png")}

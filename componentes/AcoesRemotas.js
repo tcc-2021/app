@@ -143,3 +143,26 @@ export function registroUsuarioRemoto(handler, nome, email, senha) {
             console.error(error);
         });
 }
+
+export function exercicioIndividualRemoto(materia) {
+    return fetch(
+        "https://studiistcc.000webhostapp.com/php/exercicio_individual_mobile.php",
+        {
+            method: "post",
+            header: {
+                Accept: "application/json",
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+                materia: materia,
+            }),
+        }
+    )
+        .then((response) => response.json())
+        .then((responseJson) => {
+            return responseJson;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}

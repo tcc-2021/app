@@ -5,6 +5,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import PaginaExercicios from "./PaginaExercicios.js";
+import RenderExercicio from "./RenderExercicio";
 import PaginaSimulado from "./PaginaSimulado.js";
 import PaginaBiblioteca from "./PaginaBiblioteca.js";
 import PaginaPerfil from "./PaginaPerfil.js";
@@ -45,10 +46,22 @@ export default class PaginaInicial extends React.Component {
         if (this.state.isLoggedIn) {
             return (
                 <NavigationContainer ref={navigationRef}>
-                    <Stack.Navigator initialRouteName="Simulado">
+                    <Stack.Navigator
+                        initialRouteName="Simulado"
+                        screenOptions={{
+                            headerTitleStyle: { fontFamily: "Lato" },
+                        }}
+                    >
                         <Stack.Screen
+                            options={{ title: "Exercícios" }}
                             name="Exercicios"
                             component={PaginaExercicios}
+                        />
+
+                        <Stack.Screen
+                            options={{ title: "Resolver Exercícios" }}
+                            name="RenderExercicio"
+                            component={RenderExercicio}
                         />
 
                         <Stack.Screen
@@ -59,6 +72,7 @@ export default class PaginaInicial extends React.Component {
                             name="Simulado"
                             component={PaginaSimulado}
                         />
+
                         <Stack.Screen
                             options={{ title: "Perfil" }}
                             name="Perfil"
