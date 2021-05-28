@@ -35,12 +35,28 @@ export default class AlterarEmail extends React.Component {
                         const re =
                             /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-                        if (this.emailNovo != "" && re.test(this.emailNovo)) {
+                        if (
+                            this.emailNovo != "" &&
+                            re.test(this.emailNovo) &&
+                            this.emailAtual === this.props.userEmail
+                        ) {
                             alterarEmailRemoto(
-                                this.props.route.params.handler,
                                 this.emailAtual,
                                 this.emailNovo
-                            );
+                            ).then((alterado) => {
+                                if (alterado) {
+                                    this.props.route.params.handler(
+                                        this.emailNovo,
+                                        true
+                                    );
+                                    alert("Email alterado com sucesso!");
+                                    this.props.navigation.navigate("Perfil");
+                                } else {
+                                    alert(
+                                        "Um erro ocorreu durante a alteração de email. Tente novamente mais tarde."
+                                    );
+                                }
+                            });
                         } else {
                             alert("Verifique seus dados.");
                         }

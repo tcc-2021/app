@@ -33,11 +33,23 @@ export default class AlterarSenha extends React.Component {
                     onPress: () => {
                         if (this.senhaNova != "") {
                             alterarSenhaRemoto(
-                                this.props.route.params.handler,
                                 this.props.route.params.email,
                                 this.senhaAtual,
                                 this.senhaNova
-                            );
+                            ).then((alterado) => {
+                                if (alterado == 0) {
+                                    alert("Senha alterada com sucesso!");
+                                    this.props.navigation.navigate("Perfil");
+                                } else if (alterado == 1) {
+                                    alert(
+                                        "Ocorreu um erro durante a alteração de senha. Tente novamente mais tarde."
+                                    );
+                                } else {
+                                    alert(
+                                        "A senha atual inserida está errada. Verifique seus dados."
+                                    );
+                                }
+                            });
                         } else {
                             alert("Verifique seus dados.");
                         }

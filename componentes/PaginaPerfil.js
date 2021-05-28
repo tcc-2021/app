@@ -18,11 +18,7 @@ import {
 
 import { PieChart } from "react-native-chart-kit";
 
-import {
-    deletarContaServidor,
-    alterarEmailRemoto,
-    alterarSenhaRemoto,
-} from "./AcoesRemotas";
+import { deletarContaServidor } from "./AcoesRemotas";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -133,7 +129,7 @@ export default class ListIconExample extends Component {
     render() {
         return (
             <Container>
-                <Content style={{ paddingTop: 10 }}>
+                <Content style={styles.content}>
                     <ListItem icon onPress={() => this.alterarEmail()}>
                         <Left>
                             <Button style={{ backgroundColor: "#007AFF" }}>
@@ -214,6 +210,90 @@ export default class ListIconExample extends Component {
                         center={[10, 0]}
                         absolute
                     />
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de Biologia
+                    </Text>
+                    <PieChart
+                        data={dataPt}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"population"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de Geografia
+                    </Text>
+                    <PieChart
+                        data={dataPt}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"population"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de Física
+                    </Text>
+                    <PieChart
+                        data={dataPt}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"population"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de Química
+                    </Text>
+                    <PieChart
+                        data={dataPt}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"population"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de Inglês
+                    </Text>
+                    <PieChart
+                        data={dataPt}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"population"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de História
+                    </Text>
+                    <PieChart
+                        data={dataPt}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"population"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
                 </Content>
             </Container>
         );
@@ -226,5 +306,8 @@ const styles = StyleSheet.create({
         fontSize: 25,
         textAlign: "center",
         marginTop: 20,
+    },
+    content: {
+        paddingTop: 10,
     },
 });

@@ -24,14 +24,7 @@ export default class PaginaExercicios extends Component {
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
                 >
-                    <View
-                        style={{
-                            flexGrow: 1,
-                            flexDirection: "row",
-                            marginTop: 0,
-                            marginLeft: 15,
-                        }}
-                    >
+                    <View style={styles.view}>
                         <View style={styles.columnView}>
                             <View style={styles.contIndividual}>
                                 <TouchableOpacity
@@ -227,5 +220,12 @@ const styles = StyleSheet.create({
     columnView: {
         flex: 1,
         flexDirection: "column",
+    },
+    view: {
+        flexGrow: 1,
+        flexDirection: "row",
+        marginTop: 0,
+        marginLeft: 15,
+        marginBottom: 20,
     },
 });

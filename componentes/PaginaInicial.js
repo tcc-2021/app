@@ -27,14 +27,13 @@ export default class PaginaInicial extends React.Component {
         this.handler = this.handler.bind(this);
         this.state = {
             isLoggedIn: true,
-            userEmail: "aa@aa.aa",
-            currPage: 0,
+            userEmail: "ff@ff.ff",
         };
     }
 
-    handler(logade, email) {
+    handler(logged, email) {
         this.setState({
-            isLoggedIn: logade,
+            isLoggedIn: logged,
             userEmail: email,
         });
     }
@@ -61,8 +60,14 @@ export default class PaginaInicial extends React.Component {
                         <Stack.Screen
                             options={{ title: "Resolver Exercícios" }}
                             name="RenderExercicio"
-                            component={RenderExercicio}
-                        />
+                        >
+                            {(props) => (
+                                <RenderExercicio
+                                    {...props}
+                                    userEmail={this.state.userEmail}
+                                />
+                            )}
+                        </Stack.Screen>
 
                         <Stack.Screen
                             name="Biblioteca"
@@ -89,8 +94,14 @@ export default class PaginaInicial extends React.Component {
                         <Stack.Screen
                             options={{ title: "Configurações" }}
                             name="AlterarEmail"
-                            component={PaginaAlterarEmail}
-                        />
+                        >
+                            {(props) => (
+                                <PaginaAlterarEmail
+                                    {...props}
+                                    userEmail={this.state.userEmail}
+                                />
+                            )}
+                        </Stack.Screen>
 
                         <Stack.Screen
                             options={{ title: "Configurações" }}
