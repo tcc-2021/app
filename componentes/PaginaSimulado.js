@@ -14,6 +14,7 @@ import {
 } from "native-base";
 
 import GradientButton from "react-native-gradient-buttons";
+import Slider from "@react-native-community/slider";
 
 export default class PaginaSimulado extends Component {
     constructor(props) {
@@ -29,7 +30,7 @@ export default class PaginaSimulado extends Component {
             quimica: true,
             ingles: true,
             historia: true,
-            redacao: true,
+            numQuestoes: 20,
         };
     }
 
@@ -174,19 +175,24 @@ export default class PaginaSimulado extends Component {
                             </Text>
                         </Body>
                     </ListItem>
-                    {/*
-                    <ListItem onPress={() => this.handleCheckboxes(8)}>
-                        <CheckBox
-                            checked={this.state.redacao}
-                            onPress={() => this.handleCheckboxes(8)}
-                            color="#7c32ff"
-                        />
-                        <Body>
-                            <Text style={styles.materia}>
-                                <Icon active name="pencil"></Icon> | Redação
-                            </Text>
-                        </Body>
-                    </ListItem>*/}
+
+                    <Slider
+                        style={{ width: "100%", height: 60 }}
+                        minimumValue={5}
+                        maximumValue={90}
+                        step={5}
+                        minimumTrackTintColor="#333"
+                        maximumTrackTintColor="#333"
+                        thumbTintColor="#7c32ff"
+                        value={20}
+                        onValueChange={(value) =>
+                            this.setState({ numQuestoes: value })
+                        }
+                    />
+
+                    <Text style={styles.displayNumQuestoes}>
+                        Número de questões no simulado: {this.state.numQuestoes}
+                    </Text>
 
                     <GradientButton
                         style={{ marginTop: 15, left: "75%" }}
@@ -248,5 +254,10 @@ const styles = StyleSheet.create({
     materia: {
         fontFamily: "Lato",
         fontSize: 19,
+    },
+    displayNumQuestoes: {
+        fontFamily: "Lato",
+        fontSize: 25,
+        textAlign: "center",
     },
 });

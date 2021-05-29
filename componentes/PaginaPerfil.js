@@ -80,16 +80,6 @@ export default class ListIconExample extends Component {
                 ],
                 dadosMa: [
                     {
-                        name: "Acertos",
-                        number: parseInt(
-                            jsonServidor["matematica"]["acertos"],
-                            10
-                        ),
-                        color: "#DE9D98",
-                        legendFontColor: "#7F7F7F",
-                        legendFontSize: 17,
-                    },
-                    {
                         name: "Erros",
                         number: parseInt(
                             jsonServidor["matematica"]["erros"],
@@ -99,8 +89,25 @@ export default class ListIconExample extends Component {
                         legendFontColor: "#7F7F7F",
                         legendFontSize: 17,
                     },
+                    {
+                        name: "Acertos",
+                        number: parseInt(
+                            jsonServidor["matematica"]["acertos"],
+                            10
+                        ),
+                        color: "#DE9D98",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
                 ],
                 dadosHi: [
+                    {
+                        name: "Erros",
+                        number: parseInt(jsonServidor["historia"]["erros"], 10),
+                        color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
                     {
                         name: "Acertos",
                         number: parseInt(
@@ -111,25 +118,8 @@ export default class ListIconExample extends Component {
                         legendFontColor: "#7F7F7F",
                         legendFontSize: 17,
                     },
-                    {
-                        name: "Erros",
-                        number: parseInt(jsonServidor["historia"]["erros"], 10),
-                        color: "#F16459",
-                        legendFontColor: "#7F7F7F",
-                        legendFontSize: 17,
-                    },
                 ],
                 dadosGe: [
-                    {
-                        name: "Acertos",
-                        number: parseInt(
-                            jsonServidor["geografia"]["acertos"],
-                            10
-                        ),
-                        color: "#DE9D98",
-                        legendFontColor: "#7F7F7F",
-                        legendFontSize: 17,
-                    },
                     {
                         name: "Erros",
                         number: parseInt(
@@ -140,15 +130,18 @@ export default class ListIconExample extends Component {
                         legendFontColor: "#7F7F7F",
                         legendFontSize: 17,
                     },
-                ],
-                dadosFi: [
                     {
                         name: "Acertos",
-                        number: parseInt(jsonServidor["fisica"]["acertos"], 10),
+                        number: parseInt(
+                            jsonServidor["geografia"]["acertos"],
+                            10
+                        ),
                         color: "#DE9D98",
                         legendFontColor: "#7F7F7F",
                         legendFontSize: 17,
                     },
+                ],
+                dadosFi: [
                     {
                         name: "Erros",
                         number: parseInt(jsonServidor["fisica"]["erros"], 10),
@@ -156,8 +149,22 @@ export default class ListIconExample extends Component {
                         legendFontColor: "#7F7F7F",
                         legendFontSize: 17,
                     },
+                    {
+                        name: "Acertos",
+                        number: parseInt(jsonServidor["fisica"]["acertos"], 10),
+                        color: "#DE9D98",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
                 ],
                 dadosQu: [
+                    {
+                        name: "Erros",
+                        number: parseInt(jsonServidor["quimica"]["erros"], 10),
+                        color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
                     {
                         name: "Acertos",
                         number: parseInt(
@@ -168,15 +175,15 @@ export default class ListIconExample extends Component {
                         legendFontColor: "#7F7F7F",
                         legendFontSize: 17,
                     },
+                ],
+                dadosBi: [
                     {
                         name: "Erros",
-                        number: parseInt(jsonServidor["quimica"]["erros"], 10),
+                        number: parseInt(jsonServidor["biologia"]["erros"], 10),
                         color: "#F16459",
                         legendFontColor: "#7F7F7F",
                         legendFontSize: 17,
                     },
-                ],
-                dadosBi: [
                     {
                         name: "Acertos",
                         number: parseInt(
@@ -187,26 +194,19 @@ export default class ListIconExample extends Component {
                         legendFontColor: "#7F7F7F",
                         legendFontSize: 17,
                     },
-                    {
-                        name: "Erros",
-                        number: parseInt(jsonServidor["biologia"]["erros"], 10),
-                        color: "#F16459",
-                        legendFontColor: "#7F7F7F",
-                        legendFontSize: 17,
-                    },
                 ],
                 dadosIn: [
-                    {
-                        name: "Acertos",
-                        number: parseInt(jsonServidor["ingles"]["acertos"], 10),
-                        color: "#DE9D98",
-                        legendFontColor: "#7F7F7F",
-                        legendFontSize: 17,
-                    },
                     {
                         name: "Erros",
                         number: parseInt(jsonServidor["ingles"]["erros"], 10),
                         color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                    {
+                        name: "Acertos",
+                        number: parseInt(jsonServidor["ingles"]["acertos"], 10),
+                        color: "#DE9D98",
                         legendFontColor: "#7F7F7F",
                         legendFontSize: 17,
                     },
