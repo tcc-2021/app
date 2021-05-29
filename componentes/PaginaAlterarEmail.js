@@ -46,8 +46,8 @@ export default class AlterarEmail extends React.Component {
                             ).then((alterado) => {
                                 if (alterado) {
                                     this.props.route.params.handler(
-                                        this.emailNovo,
-                                        true
+                                        true,
+                                        this.emailNovo
                                     );
                                     alert("Email alterado com sucesso!");
                                     this.props.navigation.navigate("Perfil");

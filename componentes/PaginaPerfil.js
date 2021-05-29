@@ -18,57 +18,15 @@ import {
 
 import { PieChart } from "react-native-chart-kit";
 
-import { deletarContaServidor } from "./AcoesRemotas";
+import { deletarContaServidor, baixarEstatisticas } from "./AcoesRemotas";
 
 const screenWidth = Dimensions.get("window").width;
 
-const data = [
-    {
-        name: "Não feitas",
-        population: 120,
-        color: "#DE9D98",
-        legendFontColor: "#7F7F7F",
-        legendFontSize: 15,
-    },
-    {
-        name: "Feitas",
-        population: 50,
-        color: "#F16459",
-        legendFontColor: "#7F7F7F",
-        legendFontSize: 15,
-    },
-];
-
-const dataPt = [
-    {
-        name: "Não feitas",
-        population: 57,
-        color: "#DE9D98",
-        legendFontColor: "#7F7F7F",
-        legendFontSize: 15,
-    },
-    {
-        name: "Feitas",
-        population: 123,
-        color: "#F16459",
-        legendFontColor: "#7F7F7F",
-        legendFontSize: 15,
-    },
-];
-
 const chartConfig = {
-    backgroundColor: "#e26a00",
-    backgroundGradientFrom: "#fb8c00",
-    backgroundGradientTo: "#ffa726",
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     style: {
         borderRadius: 16,
-    },
-    propsForDots: {
-        r: "6",
-        strokeWidth: "2",
-        stroke: "#ffa726",
     },
 };
 
@@ -79,6 +37,184 @@ async function save(key, value) {
 }
 
 export default class ListIconExample extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            dadosPt: [],
+            dadosMa: [],
+            dadosHi: [],
+            dadosGe: [],
+            dadosFi: [],
+            dadosQu: [],
+            dadosBi: [],
+            dadosIn: [],
+        };
+    }
+
+    componentDidMount() {
+        baixarEstatisticas(this.props.userEmail).then((jsonServidor) => {
+            console.log(jsonServidor);
+            this.setState({
+                dadosPt: [
+                    {
+                        name: "Erros",
+                        number: parseInt(
+                            jsonServidor["portugues"]["erros"],
+                            10
+                        ),
+                        color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                    {
+                        name: "Acertos",
+                        number: parseInt(
+                            jsonServidor["portugues"]["acertos"],
+                            10
+                        ),
+                        color: "#DE9D98",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                ],
+                dadosMa: [
+                    {
+                        name: "Acertos",
+                        number: parseInt(
+                            jsonServidor["matematica"]["acertos"],
+                            10
+                        ),
+                        color: "#DE9D98",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                    {
+                        name: "Erros",
+                        number: parseInt(
+                            jsonServidor["matematica"]["erros"],
+                            10
+                        ),
+                        color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                ],
+                dadosHi: [
+                    {
+                        name: "Acertos",
+                        number: parseInt(
+                            jsonServidor["historia"]["acertos"],
+                            10
+                        ),
+                        color: "#DE9D98",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                    {
+                        name: "Erros",
+                        number: parseInt(jsonServidor["historia"]["erros"], 10),
+                        color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                ],
+                dadosGe: [
+                    {
+                        name: "Acertos",
+                        number: parseInt(
+                            jsonServidor["geografia"]["acertos"],
+                            10
+                        ),
+                        color: "#DE9D98",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                    {
+                        name: "Erros",
+                        number: parseInt(
+                            jsonServidor["geografia"]["erros"],
+                            10
+                        ),
+                        color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                ],
+                dadosFi: [
+                    {
+                        name: "Acertos",
+                        number: parseInt(jsonServidor["fisica"]["acertos"], 10),
+                        color: "#DE9D98",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                    {
+                        name: "Erros",
+                        number: parseInt(jsonServidor["fisica"]["erros"], 10),
+                        color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                ],
+                dadosQu: [
+                    {
+                        name: "Acertos",
+                        number: parseInt(
+                            jsonServidor["quimica"]["acertos"],
+                            10
+                        ),
+                        color: "#DE9D98",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                    {
+                        name: "Erros",
+                        number: parseInt(jsonServidor["quimica"]["erros"], 10),
+                        color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                ],
+                dadosBi: [
+                    {
+                        name: "Acertos",
+                        number: parseInt(
+                            jsonServidor["biologia"]["acertos"],
+                            10
+                        ),
+                        color: "#DE9D98",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                    {
+                        name: "Erros",
+                        number: parseInt(jsonServidor["biologia"]["erros"], 10),
+                        color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                ],
+                dadosIn: [
+                    {
+                        name: "Acertos",
+                        number: parseInt(jsonServidor["ingles"]["acertos"], 10),
+                        color: "#DE9D98",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                    {
+                        name: "Erros",
+                        number: parseInt(jsonServidor["ingles"]["erros"], 10),
+                        color: "#F16459",
+                        legendFontColor: "#7F7F7F",
+                        legendFontSize: 17,
+                    },
+                ],
+            });
+        });
+    }
+
     alterarEmail() {
         this.props.navigation.navigate("AlterarEmail", {
             handler: this.props.handler,
@@ -182,99 +318,30 @@ export default class ListIconExample extends Component {
                             <Icon active name="arrow-forward" />
                         </Right>
                     </ListItem>
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Matemática
-                    </Text>
-                    <PieChart
-                        data={data}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"population"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
+
                     <Text style={styles.atividadeTitulo}>
                         Questões de Português
                     </Text>
                     <PieChart
-                        data={dataPt}
+                        data={this.state.dadosPt}
                         width={screenWidth}
                         height={220}
                         chartConfig={chartConfig}
-                        accessor={"population"}
+                        accessor={"number"}
                         backgroundColor={"transparent"}
                         paddingLeft={"10"}
                         center={[10, 0]}
                         absolute
                     />
                     <Text style={styles.atividadeTitulo}>
-                        Questões de Biologia
+                        Questões de Matemática
                     </Text>
                     <PieChart
-                        data={dataPt}
+                        data={this.state.dadosMa}
                         width={screenWidth}
                         height={220}
                         chartConfig={chartConfig}
-                        accessor={"population"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Geografia
-                    </Text>
-                    <PieChart
-                        data={dataPt}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"population"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Física
-                    </Text>
-                    <PieChart
-                        data={dataPt}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"population"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Química
-                    </Text>
-                    <PieChart
-                        data={dataPt}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"population"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Inglês
-                    </Text>
-                    <PieChart
-                        data={dataPt}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"population"}
+                        accessor={"number"}
                         backgroundColor={"transparent"}
                         paddingLeft={"10"}
                         center={[10, 0]}
@@ -284,11 +351,82 @@ export default class ListIconExample extends Component {
                         Questões de História
                     </Text>
                     <PieChart
-                        data={dataPt}
+                        data={this.state.dadosHi}
                         width={screenWidth}
                         height={220}
                         chartConfig={chartConfig}
-                        accessor={"population"}
+                        accessor={"number"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
+
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de Geografia
+                    </Text>
+                    <PieChart
+                        data={this.state.dadosGe}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"number"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de Física
+                    </Text>
+                    <PieChart
+                        data={this.state.dadosFi}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"number"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de Química
+                    </Text>
+                    <PieChart
+                        data={this.state.dadosQu}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"number"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de Biologia
+                    </Text>
+                    <PieChart
+                        data={this.state.dadosBi}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"number"}
+                        backgroundColor={"transparent"}
+                        paddingLeft={"10"}
+                        center={[10, 0]}
+                        absolute
+                    />
+                    <Text style={styles.atividadeTitulo}>
+                        Questões de Inglês
+                    </Text>
+                    <PieChart
+                        data={this.state.dadosIn}
+                        width={screenWidth}
+                        height={220}
+                        chartConfig={chartConfig}
+                        accessor={"number"}
                         backgroundColor={"transparent"}
                         paddingLeft={"10"}
                         center={[10, 0]}
