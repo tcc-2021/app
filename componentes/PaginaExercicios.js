@@ -11,6 +11,8 @@ import {
     BackHandler,
 } from "react-native";
 
+// TODO: fazer pausar qnd vc insere uma alternativa e aparece um botao pra ir pra proxima pergunta dps do gif e marcar qual alt o user marcou e qual é a certa
+
 // Tentativa de suportar o máximo de viewports possíveis, provavelmente falha por conta do - 40. rever isso
 
 const ContainerLado = Dimensions.get("window").width / 2 - 40;

@@ -15,8 +15,6 @@ import {
     Text,
 } from "native-base";
 
-import * as RootNavigation from "./RootNavigation";
-
 import temas from "../temas-native-base/Tema.js";
 
 import { useNavigation } from "@react-navigation/native";
@@ -39,7 +37,7 @@ export default function IconFooter(props) {
                     <Button
                         active={
                             routeName == "Exercicios" ||
-                            routeName == "RenderExercicios"
+                            routeName == "RenderExercicio"
                         }
                         onPress={() =>
                             props.navigationRef.current?.navigate("Exercicios")

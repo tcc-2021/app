@@ -14,7 +14,6 @@ import {
     Root,
 } from "native-base";
 
-import * as RootNavigation from "./RootNavigation";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { loginUsuarioRemoto } from "./AcoesRemotas";

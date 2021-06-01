@@ -14,6 +14,7 @@ import {
     Body,
     Right,
     Switch,
+    View,
 } from "native-base";
 
 import { PieChart } from "react-native-chart-kit";
@@ -41,20 +42,19 @@ export default class ListIconExample extends Component {
         super(props);
 
         this.state = {
-            dadosPt: [],
-            dadosMa: [],
-            dadosHi: [],
-            dadosGe: [],
-            dadosFi: [],
-            dadosQu: [],
-            dadosBi: [],
-            dadosIn: [],
+            dadosPt: [{ number: 0 }, { number: 0 }],
+            dadosMa: [{ number: 0 }, { number: 0 }],
+            dadosHi: [{ number: 0 }, { number: 0 }],
+            dadosGe: [{ number: 0 }, { number: 0 }],
+            dadosFi: [{ number: 0 }, { number: 0 }],
+            dadosQu: [{ number: 0 }, { number: 0 }],
+            dadosBi: [{ number: 0 }, { number: 0 }],
+            dadosIn: [{ number: 0 }, { number: 0 }],
         };
     }
 
     componentDidMount() {
         baixarEstatisticas(this.props.userEmail).then((jsonServidor) => {
-            console.log(jsonServidor);
             this.setState({
                 dadosPt: [
                     {
@@ -319,119 +319,163 @@ export default class ListIconExample extends Component {
                         </Right>
                     </ListItem>
 
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Português
-                    </Text>
-                    <PieChart
-                        data={this.state.dadosPt}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"number"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Matemática
-                    </Text>
-                    <PieChart
-                        data={this.state.dadosMa}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"number"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de História
-                    </Text>
-                    <PieChart
-                        data={this.state.dadosHi}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"number"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
+                    {this.state.dadosPt[0].number !== 0 &&
+                        this.state.dadosPt[1].number !== 0 && (
+                            <View>
+                                <Text style={styles.atividadeTitulo}>
+                                    Questões de Português
+                                </Text>
+                                <PieChart
+                                    data={this.state.dadosPt}
+                                    width={screenWidth}
+                                    height={220}
+                                    chartConfig={chartConfig}
+                                    accessor={"number"}
+                                    backgroundColor={"transparent"}
+                                    paddingLeft={"10"}
+                                    center={[10, 0]}
+                                    absolute
+                                />
+                            </View>
+                        )}
+                    {(this.state.dadosMa[0].number !== 0 ||
+                        this.state.dadosMa[1].number !== 0) && (
+                        <View>
+                            <Text style={styles.atividadeTitulo}>
+                                Questões de Matemática
+                            </Text>
+                            <PieChart
+                                data={this.state.dadosMa}
+                                width={screenWidth}
+                                height={220}
+                                chartConfig={chartConfig}
+                                accessor={"number"}
+                                backgroundColor={"transparent"}
+                                paddingLeft={"10"}
+                                center={[10, 0]}
+                                absolute
+                            />
+                        </View>
+                    )}
+                    {(this.state.dadosHi[0].number !== 0 ||
+                        this.state.dadosHi[1].number !== 0) && (
+                        <View>
+                            <Text style={styles.atividadeTitulo}>
+                                Questões de História
+                            </Text>
+                            <PieChart
+                                data={this.state.dadosHi}
+                                width={screenWidth}
+                                height={220}
+                                chartConfig={chartConfig}
+                                accessor={"number"}
+                                backgroundColor={"transparent"}
+                                paddingLeft={"10"}
+                                center={[10, 0]}
+                                absolute
+                            />
+                        </View>
+                    )}
 
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Geografia
-                    </Text>
-                    <PieChart
-                        data={this.state.dadosGe}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"number"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Física
-                    </Text>
-                    <PieChart
-                        data={this.state.dadosFi}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"number"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Química
-                    </Text>
-                    <PieChart
-                        data={this.state.dadosQu}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"number"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Biologia
-                    </Text>
-                    <PieChart
-                        data={this.state.dadosBi}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"number"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
-                    <Text style={styles.atividadeTitulo}>
-                        Questões de Inglês
-                    </Text>
-                    <PieChart
-                        data={this.state.dadosIn}
-                        width={screenWidth}
-                        height={220}
-                        chartConfig={chartConfig}
-                        accessor={"number"}
-                        backgroundColor={"transparent"}
-                        paddingLeft={"10"}
-                        center={[10, 0]}
-                        absolute
-                    />
+                    {(this.state.dadosGe[0].number !== 0 ||
+                        this.state.dadosGe[1].number !== 0) && (
+                        <View>
+                            <Text style={styles.atividadeTitulo}>
+                                Questões de Geografia
+                            </Text>
+                            <PieChart
+                                data={this.state.dadosGe}
+                                width={screenWidth}
+                                height={220}
+                                chartConfig={chartConfig}
+                                accessor={"number"}
+                                backgroundColor={"transparent"}
+                                paddingLeft={"10"}
+                                center={[10, 0]}
+                                absolute
+                            />
+                        </View>
+                    )}
+
+                    {(this.state.dadosFi[0].number !== 0 ||
+                        this.state.dadosFi[1].number !== 0) && (
+                        <View>
+                            <Text style={styles.atividadeTitulo}>
+                                Questões de Física
+                            </Text>
+                            <PieChart
+                                data={this.state.dadosFi}
+                                width={screenWidth}
+                                height={220}
+                                chartConfig={chartConfig}
+                                accessor={"number"}
+                                backgroundColor={"transparent"}
+                                paddingLeft={"10"}
+                                center={[10, 0]}
+                                absolute
+                            />
+                        </View>
+                    )}
+
+                    {(this.state.dadosQu[0].number !== 0 ||
+                        this.state.dadosQu[1].number !== 0) && (
+                        <View>
+                            <Text style={styles.atividadeTitulo}>
+                                Questões de Química
+                            </Text>
+                            <PieChart
+                                data={this.state.dadosQu}
+                                width={screenWidth}
+                                height={220}
+                                chartConfig={chartConfig}
+                                accessor={"number"}
+                                backgroundColor={"transparent"}
+                                paddingLeft={"10"}
+                                center={[10, 0]}
+                                absolute
+                            />
+                        </View>
+                    )}
+
+                    {(this.state.dadosBi[0].number !== 0 ||
+                        this.state.dadosBi[1].number !== 0) && (
+                        <View>
+                            <Text style={styles.atividadeTitulo}>
+                                Questões de Biologia
+                            </Text>
+                            <PieChart
+                                data={this.state.dadosBi}
+                                width={screenWidth}
+                                height={220}
+                                chartConfig={chartConfig}
+                                accessor={"number"}
+                                backgroundColor={"transparent"}
+                                paddingLeft={"10"}
+                                center={[10, 0]}
+                                absolute
+                            />
+                        </View>
+                    )}
+
+                    {(this.state.dadosIn[0].number !== 0 ||
+                        this.state.dadosIn[1].number !== 0) && (
+                        <View>
+                            <Text style={styles.atividadeTitulo}>
+                                Questões de Inglês
+                            </Text>
+                            <PieChart
+                                data={this.state.dadosIn}
+                                width={screenWidth}
+                                height={220}
+                                chartConfig={chartConfig}
+                                accessor={"number"}
+                                backgroundColor={"transparent"}
+                                paddingLeft={"10"}
+                                center={[10, 0]}
+                                absolute
+                            />
+                        </View>
+                    )}
                 </Content>
             </Container>
         );

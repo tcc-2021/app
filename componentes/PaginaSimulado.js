@@ -60,10 +60,38 @@ export default class PaginaSimulado extends Component {
             case 7:
                 this.setState({ historia: !this.state.historia });
                 break;
-            case 8:
-                this.setState({ redacao: !this.state.redacao });
-                break;
         }
+    }
+
+    materiasSelecionadasComoArray() {
+        let materias = [];
+
+        if (this.state.portugues) {
+            materias.push("portugues");
+        }
+        if (this.state.matematica) {
+            materias.push("matematica");
+        }
+        if (this.state.biologia) {
+            materias.push("biologia");
+        }
+        if (this.state.geografia) {
+            materias.push("geografia");
+        }
+        if (this.state.fisica) {
+            materias.push("fisica");
+        }
+        if (this.state.quimica) {
+            materias.push("quimica");
+        }
+        if (this.state.ingles) {
+            materias.push("ingles");
+        }
+        if (this.state.historia) {
+            materias.push("historia");
+        }
+
+        return materias;
     }
 
     render() {
@@ -178,7 +206,7 @@ export default class PaginaSimulado extends Component {
 
                     <Slider
                         style={{ width: "100%", height: 60 }}
-                        minimumValue={5}
+                        minimumValue={10}
                         maximumValue={90}
                         step={5}
                         minimumTrackTintColor="#333"
@@ -205,7 +233,12 @@ export default class PaginaSimulado extends Component {
                         radius={30}
                         impact
                         impactStyle="Light"
-                        onPressAction={() => alert("You pressed me!")}
+                        onPressAction={() =>
+                            this.props.navigation.navigate("RenderSimulado", {
+                                numQuestoes: this.state.numQuestoes,
+                                materias: this.materiasSelecionadasComoArray(),
+                            })
+                        }
                     >
                         <Icon
                             style={{

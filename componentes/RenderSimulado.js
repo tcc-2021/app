@@ -20,36 +20,21 @@ import {
     Icon,
 } from "native-base";
 
-import {
-    exercicioIndividualRemoto,
-    atualizarMateriaEstatistica,
-} from "./AcoesRemotas";
+import { gerarSimulado, atualizarMateriaEstatistica } from "./AcoesRemotas";
 
 import { BlurView } from "expo-blur";
 
 const dims = Dimensions.get("window");
 
-export default class RenderExercicio extends React.Component {
+export default class RenderSimulado extends React.Component {
     constructor(props) {
         super(props);
 
         this.alternativaHandler = this.alternativaHandler.bind(this);
-        this.reloadExercicio = this.reloadExercicio.bind(this);
+        this.avancarIndice = this.avancarIndice.bind(this);
+        this.voltarIndice = this.voltarIndice.bind(this);
 
         this.state = {
-            perguntaTexto: "",
-            arquivo: "http://exemplo.com",
-            ano: "",
-            resposta: "",
-            alternativaSelect: "",
-            corretoGif: 0,
-            blurIntensity: 0,
-        };
-    }
-
-    reloadExercicio() {
-        // resetar estados internos
-        this.setState({
             perguntaTexto: "",
             arquivo:
                 "https://studiistcc.000webhostapp.com/insercaodebanco/upload/",
@@ -59,21 +44,30 @@ export default class RenderExercicio extends React.Component {
             corretoGif: 0,
             blurIntensity: 0,
             travarAlternativas: false,
-        });
 
-        // baixar novo exercício
-        exercicioIndividualRemoto(this.props.route.params.materia).then(
-            (exercicio) => {
-                this.setState({
-                    perguntaTexto: exercicio["Pergunta"],
-                    arquivo:
-                        "https://studiistcc.000webhostapp.com/insercaodebanco/upload/" +
-                        exercicio["Arquivo"],
-                    ano: exercicio["Ano"],
-                    resposta: exercicio["Resposta"],
-                });
-            }
-        );
+            indiceSimulado: 0,
+            perguntasSimulado: [],
+            alternativasSimulado: [],
+        };
+
+        this.indice = 0;
+    }
+
+    reloadSimulado() {
+        gerarSimulado(
+            this.props.route.params.numQuestoes,
+            this.props.route.params.materias
+        ).then((exercicios) => {
+            this.setState({
+                perguntasSimulado: exercicios,
+                perguntaTexto: exercicios[0]["Pergunta"],
+                arquivo:
+                    "https://studiistcc.000webhostapp.com/insercaodebanco/upload/" +
+                    exercicios[0]["Arquivo"],
+                resposta: exercicios[0]["Resposta"],
+                ano: exercicios[0]["Ano"],
+            });
+        });
     }
 
     formatarMateria() {
@@ -97,12 +91,24 @@ export default class RenderExercicio extends React.Component {
         }
     }
 
+    updateInterno(indice) {
+        const exercicio = this.state.perguntasSimulado[indice];
+        this.setState({
+            perguntaTexto: exercicio["Pergunta"],
+            arquivo:
+                "https://studiistcc.000webhostapp.com/insercaodebanco/upload/" +
+                exercicio["Arquivo"],
+            ano: exercicio["Ano"],
+            resposta: exercicio["Resposta"],
+        });
+    }
+
     componentDidMount() {
-        this.reloadExercicio();
+        this.reloadSimulado();
     }
 
     selectAlternativa(alt) {
-        if (!this.state.travarAlternativas) {
+        if (!this.state.perguntasSimulado[this.indice]["lockAlternativas"]) {
             this.setState({ alternativaSelect: alt });
         }
     }
@@ -125,57 +131,29 @@ export default class RenderExercicio extends React.Component {
     }
 
     alternativaHandler(acerto) {
-        this.setState({ corretoGif: 0, travarAlternativas: true });
+        this.setState({ corretoGif: 0 });
         atualizarMateriaEstatistica(
             this.props.route.params.materia,
             acerto,
             this.props.userEmail
         );
-        //this.reloadExercicio();
     }
 
-    corAlternativa(alt) {
-        if (this.state.travarAlternativas) {
-            switch (alt) {
-                case "A":
-                    if (this.state.resposta === "A") {
-                        return "#6AA84F";
-                    } else if (this.state.alternativaSelect === "A") {
-                        return "#E06666";
-                    }
-                    break;
-                case "B":
-                    if (this.state.resposta === "B") {
-                        return "#6AA84F";
-                    } else if (this.state.alternativaSelect === "B") {
-                        return "#E06666";
-                    }
-                    break;
-                case "C":
-                    if (this.state.resposta === "C") {
-                        return "#6AA84F";
-                    } else if (this.state.alternativaSelect === "C") {
-                        return "#E06666";
-                    }
-                    break;
-                case "D":
-                    if (this.state.resposta === "D") {
-                        return "#6AA84F";
-                    } else if (this.state.alternativaSelect === "D") {
-                        return "#E06666";
-                    }
-                    break;
-                case "E":
-                    if (this.state.resposta === "E") {
-                        return "#6AA84F";
-                    } else if (this.state.alternativaSelect === "E") {
-                        return "#E06666";
-                    }
-                    break;
-            }
-        }
+    avancarIndice() {
+        console.log(this.indice);
+        this.indice += 1;
+        this.setState({
+            indiceSimulado: this.indice,
+        });
+        this.updateInterno(this.indice);
+    }
 
-        return "#7c32ff";
+    voltarIndice() {
+        this.indice -= 1;
+        this.setState({
+            indiceSimulado: this.indice,
+        });
+        this.updateInterno(this.indice);
     }
 
     render() {
@@ -217,11 +195,9 @@ export default class RenderExercicio extends React.Component {
                                 <Text style={styles.in}>A </Text>
                                 <Radio
                                     selected={
-                                        this.state.alternativaSelect == "A" ||
-                                        (this.state.resposta == "A" &&
-                                            this.state.travarAlternativas)
+                                        this.state.alternativaSelect == "A"
                                     }
-                                    selectedColor={this.corAlternativa("A")}
+                                    selectedColor={"#7c32ff"}
                                     color={"#000"}
                                     onPress={() => this.selectAlternativa("A")}
                                 />
@@ -231,11 +207,9 @@ export default class RenderExercicio extends React.Component {
                                 <Text style={styles.in}>B </Text>
                                 <Radio
                                     selected={
-                                        this.state.alternativaSelect == "B" ||
-                                        (this.state.resposta == "B" &&
-                                            this.state.travarAlternativas)
+                                        this.state.alternativaSelect == "B"
                                     }
-                                    selectedColor={this.corAlternativa("B")}
+                                    selectedColor={"#7c32ff"}
                                     color={"#000"}
                                     onPress={() => this.selectAlternativa("B")}
                                 />
@@ -245,11 +219,9 @@ export default class RenderExercicio extends React.Component {
                                 <Text style={styles.in}>C </Text>
                                 <Radio
                                     selected={
-                                        this.state.alternativaSelect == "C" ||
-                                        (this.state.resposta == "C" &&
-                                            this.state.travarAlternativas)
+                                        this.state.alternativaSelect == "C"
                                     }
-                                    selectedColor={this.corAlternativa("C")}
+                                    selectedColor={"#7c32ff"}
                                     color={"#000"}
                                     onPress={() => this.selectAlternativa("C")}
                                 />
@@ -259,11 +231,9 @@ export default class RenderExercicio extends React.Component {
                                 <Text style={styles.in}>D </Text>
                                 <Radio
                                     selected={
-                                        this.state.alternativaSelect == "D" ||
-                                        (this.state.resposta == "D" &&
-                                            this.state.travarAlternativas)
+                                        this.state.alternativaSelect == "D"
                                     }
-                                    selectedColor={this.corAlternativa("D")}
+                                    selectedColor={"#7c32ff"}
                                     color={"#000"}
                                     onPress={() => this.selectAlternativa("D")}
                                 />
@@ -273,32 +243,43 @@ export default class RenderExercicio extends React.Component {
                                 <Text style={styles.in}>E </Text>
                                 <Radio
                                     selected={
-                                        this.state.alternativaSelect == "E" ||
-                                        (this.state.resposta == "E" &&
-                                            this.state.travarAlternativas)
+                                        this.state.alternativaSelect == "E"
                                     }
-                                    selectedColor={this.corAlternativa("E")}
+                                    selectedColor={"#7c32ff"}
                                     color={"#000"}
                                     onPress={() => this.selectAlternativa("E")}
                                 />
                             </ListItem>
                         </ScrollView>
-                        <Button
-                            block
-                            style={styles.corrigirBtn}
-                            onPress={() => this.verificar()}
-                        >
-                            <Text>Corrigir</Text>
-                        </Button>
-
-                        {this.state.travarAlternativas && (
-                            <Button
-                                style={[styles.botaoProx, { right: 0 }]}
-                                onPress={this.reloadExercicio}
-                            >
-                                <Icon name="arrow-forward-outline"></Icon>
-                            </Button>
-                        )}
+                        <View style={styles.botoesNavegacao}>
+                            {this.state.indiceSimulado ===
+                                this.props.route.params.numQuestoes && (
+                                <Button
+                                    block
+                                    style={styles.corrigirBtn}
+                                    onPress={this.verificar}
+                                >
+                                    <Text>Corrigir</Text>
+                                </Button>
+                            )}
+                            {this.state.indiceSimulado > 0 && (
+                                <Button
+                                    style={[styles.botaoSimulado, { left: 0 }]}
+                                    onPress={this.voltarIndice}
+                                >
+                                    <Icon name="arrow-back-outline"></Icon>
+                                </Button>
+                            )}
+                            {this.state.indiceSimulado <
+                                this.props.route.params.numQuestoes && (
+                                <Button
+                                    style={[styles.botaoSimulado, { right: 0 }]}
+                                    onPress={this.avancarIndice}
+                                >
+                                    <Icon name="arrow-forward-outline"></Icon>
+                                </Button>
+                            )}
+                        </View>
                     </View>
                 )}
                 {this.state.corretoGif == 1 && (
@@ -379,12 +360,16 @@ const styles = StyleSheet.create({
         top: dims.height / 2 - 265,
         left: dims.width / 2 - 140,
     },
-    botaoProx: {
-        zIndex: 6,
-        marginTop: 45,
+    botaoSimulado: {
         borderRadius: 0,
         height: 44,
         position: "absolute",
         backgroundColor: "#7c32ff",
+        elevation: 0,
+        zIndex: 5,
+    },
+    botoesNavegacao: {
+        backgroundColor: "#7c32ff",
+        height: 45,
     },
 });

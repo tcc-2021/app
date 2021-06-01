@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import PaginaExercicios from "./PaginaExercicios.js";
 import RenderExercicio from "./RenderExercicio";
+import RenderSimulado from "./RenderSimulado";
 import PaginaSimulado from "./PaginaSimulado.js";
 import PaginaBiblioteca from "./PaginaBiblioteca.js";
 import PaginaPerfil from "./PaginaPerfil.js";
@@ -16,8 +17,6 @@ import PaginaLogin from "./PaginaLogin";
 import PaginaRegistro from "./PaginaRegistro";
 
 import IconFooter from "./Footer.js";
-
-import { navigationRef } from "./RootNavigation";
 
 import * as SecureStore from "expo-secure-store";
 
@@ -63,6 +62,18 @@ export default class PaginaInicial extends React.Component {
                         >
                             {(props) => (
                                 <RenderExercicio
+                                    {...props}
+                                    userEmail={this.state.userEmail}
+                                />
+                            )}
+                        </Stack.Screen>
+
+                        <Stack.Screen
+                            options={{ title: "Simulado" }}
+                            name="RenderSimulado"
+                        >
+                            {(props) => (
+                                <RenderSimulado
                                     {...props}
                                     userEmail={this.state.userEmail}
                                 />

@@ -23,7 +23,6 @@ import {
     Right,
 } from "native-base";
 
-import * as RootNavigation from "./RootNavigation";
 import { useFocusEffect } from "@react-navigation/native";
 
 export default function PaginaBiblioteca(props) {

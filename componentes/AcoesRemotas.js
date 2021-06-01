@@ -210,3 +210,28 @@ export function baixarEstatisticas(email) {
             console.error(error);
         });
 }
+
+export function gerarSimulado(numQuestoes, materias) {
+    return fetch(
+        "https://studiistcc.000webhostapp.com/php/mobile/gerar_simulado.php",
+        {
+            method: "post",
+            header: {
+                Accept: "application/json",
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+                num_questoes: numQuestoes,
+                materias: materias,
+            }),
+        }
+    )
+        .then((response) => response.json())
+        .then((responseJson) => {
+            console.log(responseJson.length);
+            return responseJson;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}

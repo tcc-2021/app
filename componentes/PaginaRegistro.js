@@ -16,8 +16,6 @@ import {
 import { StackNavigator } from "@react-navigation/stack";
 import { LinearGradient } from "expo-linear-gradient";
 
-import * as RootNavigation from "./RootNavigation";
-
 import { registroUsuarioRemoto } from "./AcoesRemotas";
 
 const windowHeight = Dimensions.get("window").height;
