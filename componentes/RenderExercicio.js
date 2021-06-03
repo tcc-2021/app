@@ -33,7 +33,7 @@ export default class RenderExercicio extends React.Component {
     constructor(props) {
         super(props);
 
-        this.alternativaHandler = this.alternativaHandler.bind(this);
+        this.corrigirAlternativa = this.corrigirAlternativa.bind(this);
         this.reloadExercicio = this.reloadExercicio.bind(this);
 
         this.state = {
@@ -116,20 +116,21 @@ export default class RenderExercicio extends React.Component {
         if (this.state.alternativaSelect === this.state.resposta) {
             // usuário acertou
             this.setState({ corretoGif: 1 });
-            setTimeout(() => this.alternativaHandler(true), 1920);
+            setTimeout(() => this.corrigirAlternativa(true), 1920);
         } else {
             // usuário errou
             this.setState({ corretoGif: 2 });
-            setTimeout(() => this.alternativaHandler(false), 2400);
+            setTimeout(() => this.corrigirAlternativa(false), 2400);
         }
     }
 
-    alternativaHandler(acerto) {
+    corrigirAlternativa(acerto) {
         this.setState({ corretoGif: 0, travarAlternativas: true });
         atualizarMateriaEstatistica(
             this.props.route.params.materia,
             acerto,
-            this.props.userEmail
+            this.props.userEmail,
+            1
         );
         //this.reloadExercicio();
     }
@@ -283,22 +284,26 @@ export default class RenderExercicio extends React.Component {
                                 />
                             </ListItem>
                         </ScrollView>
-                        <Button
-                            block
-                            style={styles.corrigirBtn}
-                            onPress={() => this.verificar()}
-                        >
-                            <Text>Corrigir</Text>
-                        </Button>
+                        <View style={styles.botoesFooter}>
+                            {!this.state.travarAlternativas && (
+                                <Button
+                                    block
+                                    style={styles.corrigirBtn}
+                                    onPress={() => this.verificar()}
+                                >
+                                    <Text>Corrigir</Text>
+                                </Button>
+                            )}
 
-                        {this.state.travarAlternativas && (
-                            <Button
-                                style={[styles.botaoProx, { right: 0 }]}
-                                onPress={this.reloadExercicio}
-                            >
-                                <Icon name="arrow-forward-outline"></Icon>
-                            </Button>
-                        )}
+                            {this.state.travarAlternativas && (
+                                <Button
+                                    style={[styles.botaoProx, { right: 0 }]}
+                                    onPress={this.reloadExercicio}
+                                >
+                                    <Icon name="arrow-forward-outline"></Icon>
+                                </Button>
+                            )}
+                        </View>
                     </View>
                 )}
                 {this.state.corretoGif == 1 && (
@@ -381,10 +386,17 @@ const styles = StyleSheet.create({
     },
     botaoProx: {
         zIndex: 6,
-        marginTop: 45,
+        marginTop: 0,
         borderRadius: 0,
-        height: 44,
+        height: 43,
         position: "absolute",
         backgroundColor: "#7c32ff",
+        elevation: 0,
+    },
+    botoesFooter: {
+        backgroundColor: "#7c32ff",
+        height: 45,
+        borderBottomWidth: 1,
+        borderColor: "#FFF",
     },
 });

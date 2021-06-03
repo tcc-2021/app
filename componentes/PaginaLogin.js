@@ -121,15 +121,6 @@ export default class PaginaLogin extends React.Component {
                         </Button>
                     </LinearGradient>
 
-                    <Button block style={styles.googleBtn}>
-                        <Image
-                            source={require("../assets/google-logo.png")}
-                            style={{ height: 30, width: 30 }}
-                        ></Image>
-                        <Text style={{ color: "#0665eb" }}>
-                            Entrar usando o Google
-                        </Text>
-                    </Button>
                     <Button
                         block
                         style={[styles.googleBtn, { borderColor: "#7c32ff" }]}
@@ -139,16 +130,11 @@ export default class PaginaLogin extends React.Component {
                     >
                         <Text style={{ color: "#7c32ff" }}>Registre-se</Text>
                     </Button>
-                    <Image
-                        source={require("../assets/fundo-login.png")}
-                        style={{
-                            width: 325,
-                            height: 123,
-                            position: "relative",
-                            alignSelf: "flex-end",
-                        }}
-                    ></Image>
                 </Content>
+                <Image
+                    source={require("../assets/fundo-login.png")}
+                    style={styles.imagemPretensiosa}
+                ></Image>
             </Container>
         );
     }
@@ -162,7 +148,7 @@ const styles = StyleSheet.create({
         fontFamily: "Lato",
         textAlign: "center",
         fontSize: 30,
-        marginTop: 15,
+        marginTop: 40,
     },
     arrendodadoIn: {
         borderRadius: 20,
@@ -217,5 +203,12 @@ const styles = StyleSheet.create({
         width: "40%",
         backgroundColor: "#FFF",
         borderWidth: 1,
+    },
+    imagemPretensiosa: {
+        width: 325,
+        height: 123,
+        position: "absolute",
+        alignSelf: "flex-end",
+        bottom: 0,
     },
 });

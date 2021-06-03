@@ -156,15 +156,6 @@ export default class PaginaRegistro extends React.Component {
                         </Button>
                     </LinearGradient>
 
-                    <Button block style={styles.btn}>
-                        <Image
-                            source={require("../assets/google-logo.png")}
-                            style={{ height: 30, width: 30 }}
-                        ></Image>
-                        <Text style={{ color: "#0665eb" }}>
-                            Entrar usando o Google
-                        </Text>
-                    </Button>
                     {/*<View style={{ flex: 1, flexDirection: "row" }}>*/}
                     <Button
                         block
@@ -177,18 +168,11 @@ export default class PaginaRegistro extends React.Component {
                     </Button>
 
                     {/*</View>*/}
-
-                    <View style={styles.img}>
-                        <Image
-                            source={require("../assets/fundo-login.png")}
-                            style={{
-                                width: 325,
-                                height: 123,
-                                alignSelf: "flex-end",
-                            }}
-                        ></Image>
-                    </View>
                 </Content>
+                <Image
+                    source={require("../assets/fundo-login.png")}
+                    style={styles.imagemPretensiosa}
+                ></Image>
             </Container>
         );
     }
@@ -258,8 +242,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFF",
         borderWidth: 1,
     },
-    img: {
-        position: "relative",
-        justifyContent: "flex-end",
+    imagemPretensiosa: {
+        width: 325,
+        height: 123,
+        position: "absolute",
+        alignSelf: "flex-end",
+        bottom: 0,
     },
 });

@@ -48,20 +48,7 @@ export default function IconFooter(props) {
                         <Icon active={routeName == "Exercicios"} name="book" />
                         <Text style={{ fontSize: 10 }}>Exercícios</Text>
                     </Button>
-                    <Button
-                        active={routeName == "Biblioteca"}
-                        onPress={() =>
-                            props.navigationRef.current?.navigate("Biblioteca")
-                        }
-                        style={{ backgroundColor: "#7c32ff" }}
-                        vertical
-                    >
-                        <Icon
-                            active={routeName == "Biblioteca"}
-                            name="library"
-                        />
-                        <Text style={{ fontSize: 10 }}>Biblioteca</Text>
-                    </Button>
+
                     <Button
                         active={
                             routeName == "Simulado" ||
@@ -78,6 +65,20 @@ export default function IconFooter(props) {
                             name="trending-up"
                         />
                         <Text style={{ fontSize: 10 }}>Simulado</Text>
+                    </Button>
+                    <Button
+                        active={routeName == "Biblioteca"}
+                        onPress={() =>
+                            props.navigationRef.current?.navigate("Biblioteca")
+                        }
+                        style={{ backgroundColor: "#7c32ff" }}
+                        vertical
+                    >
+                        <Icon
+                            active={routeName == "Biblioteca"}
+                            name="library"
+                        />
+                        <Text style={{ fontSize: 10 }}>Biblioteca</Text>
                     </Button>
                     <Button
                         active={routeName == "Perfil"}

@@ -223,8 +223,7 @@ export default class PaginaSimulado extends Component {
                     </Text>
 
                     <GradientButton
-                        style={{ marginTop: 15, left: "75%" }}
-                        textStyle={{ fontSize: 20 }}
+                        style={styles.continuarBtn}
                         gradientBegin="#7c32ff"
                         gradientEnd="#c738d8"
                         gradientDirection="diagonal"
@@ -241,25 +240,15 @@ export default class PaginaSimulado extends Component {
                         }
                     >
                         <Icon
-                            style={{
-                                fontSize: 40,
-                                textAlign: "center",
-                                color: "white",
-                            }}
+                            style={styles.botaoTxtContinuar}
                             active
                             name="arrow-forward-outline"
                         ></Icon>
                     </GradientButton>
-                    <View style={{ marginTop: 60 }}>
-                        <Image
-                            source={require("../assets/fundo-login.png")}
-                            style={{
-                                width: 190,
-                                height: 75,
-                                transform: [{ scaleX: -1 }],
-                            }}
-                        ></Image>
-                    </View>
+                    <Image
+                        source={require("../assets/fundo-login.png")}
+                        style={styles.imagemPretensiosa}
+                    ></Image>
                 </ScrollView>
             </Container>
         );
@@ -276,13 +265,9 @@ const styles = StyleSheet.create({
         padding: 11,
     },
     continuarBtn: {
-        width: 60,
-        height: 60,
-        left: "44%",
-        top: "2%",
-        backgroundColor: "transparent",
-        borderRadius: 30,
-        flex: 0,
+        marginTop: 0,
+        left: "75%",
+        marginBottom: 30,
     },
     materia: {
         fontFamily: "Lato",
@@ -292,5 +277,17 @@ const styles = StyleSheet.create({
         fontFamily: "Lato",
         fontSize: 25,
         textAlign: "center",
+    },
+    imagemPretensiosa: {
+        width: 192,
+        height: 75,
+        transform: [{ scaleX: -1 }],
+        position: "absolute",
+        bottom: 0,
+    },
+    botaoTxtContinuar: {
+        fontSize: 40,
+        textAlign: "center",
+        color: "white",
     },
 });

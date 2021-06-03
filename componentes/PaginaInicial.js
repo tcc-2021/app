@@ -6,8 +6,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import PaginaExercicios from "./PaginaExercicios.js";
 import RenderExercicio from "./RenderExercicio";
-import RenderSimulado from "./RenderSimulado";
 import PaginaSimulado from "./PaginaSimulado.js";
+import RenderSimulado from "./RenderSimulado.js";
+import RenderPosSimulado from "./RenderPosSimulado.js";
 import PaginaBiblioteca from "./PaginaBiblioteca.js";
 import PaginaPerfil from "./PaginaPerfil.js";
 import PaginaAlterarEmail from "./PaginaAlterarEmail.js";
