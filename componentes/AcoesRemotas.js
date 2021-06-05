@@ -1,23 +1,20 @@
-export function deletarContaServidor(handler, email) {
-    fetch("https://studiistcc.000webhostapp.com/php/mobile/excluir_conta.php", {
-        method: "post",
-        header: {
-            Accept: "application/json",
-            "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-            email: email,
-        }),
-    })
+export function deletarContaServidor(email) {
+    return fetch(
+        "https://studiistcc.000webhostapp.com/php/mobile/excluir_conta.php",
+        {
+            method: "post",
+            header: {
+                Accept: "application/json",
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+            }),
+        }
+    )
         .then((response) => response.json())
         .then((responseJson) => {
-            if (responseJson == 0) {
-                handler(false, "");
-            } else {
-                alert(
-                    "Um erro ocorreu durante a exclusão. Tente novamente mais tarde."
-                );
-            }
+            return responseJson == 0;
         })
         .catch((error) => {
             console.error(error);
@@ -73,8 +70,8 @@ export function alterarSenhaRemoto(email, senhaAtual, senhaNova) {
         });
 }
 
-export function loginUsuarioRemoto(handler, email, senha) {
-    fetch("https://studiistcc.000webhostapp.com/php/mobile/login.php", {
+export function loginUsuarioRemoto(email, senha) {
+    return fetch("https://studiistcc.000webhostapp.com/php/mobile/login.php", {
         method: "post",
         header: {
             Accept: "application/json",
@@ -87,45 +84,32 @@ export function loginUsuarioRemoto(handler, email, senha) {
     })
         .then((response) => response.json())
         .then((responseJson) => {
-            if (responseJson == 0) {
-                handler(true, email);
-            } else {
-                alert("Seu e-mail ou senha estão errados ou são inválidos.");
-            }
+            return responseJson == 0;
         })
         .catch((error) => {
             console.error(error);
         });
 }
 
-import * as SecureStore from "expo-secure-store";
-async function save(key, value) {
-    await SecureStore.setItemAsync(key, value);
-}
-
-export function registroUsuarioRemoto(handler, nome, email, senha) {
-    fetch("https://studiistcc.000webhostapp.com/php/mobile/cadastro.php", {
-        method: "post",
-        header: {
-            Accept: "application/json",
-            "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-            nome: nome,
-            email: email,
-            senha: senha,
-        }),
-    })
+export function registroUsuarioRemoto(nome, email, senha) {
+    return fetch(
+        "https://studiistcc.000webhostapp.com/php/mobile/cadastro.php",
+        {
+            method: "post",
+            header: {
+                Accept: "application/json",
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+                nome: nome,
+                email: email,
+                senha: senha,
+            }),
+        }
+    )
         .then((response) => response.json())
         .then((responseJson) => {
-            if (responseJson === 0) {
-                save("email", email);
-                save("senha", senha);
-
-                handler(true, email);
-            } else {
-                alert(responseJson);
-            }
+            return responseJson == 0;
         })
         .catch((error) => {
             console.error(error);

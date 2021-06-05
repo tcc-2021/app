@@ -51,6 +51,7 @@ export default class RenderSimulado extends React.Component {
         this.corrigirAlternativas = this.corrigirAlternativas.bind(this);
         this.continuarParaPosSimulado =
             this.continuarParaPosSimulado.bind(this);
+        this.handleZoom = this.handleZoom.bind(this);
 
         this.state = {
             perguntaTexto: "",
@@ -68,6 +69,7 @@ export default class RenderSimulado extends React.Component {
             respostasSimuladoState: Array(
                 this.props.route.params.numQuestoes
             ).fill(""),
+            questaoImgScale: 1,
         };
 
         this.respostasSimulado = Array(
@@ -285,6 +287,14 @@ export default class RenderSimulado extends React.Component {
         this.updateInterno(this.indice);
     }
 
+    handleZoom() {
+        if (this.state.questaoImgScale == 1) {
+            this.setState({ questaoImgScale: 1.3 });
+        } else {
+            this.setState({ questaoImgScale: 1 });
+        }
+    }
+
     render() {
         return (
             <Container>
@@ -309,170 +319,144 @@ export default class RenderSimulado extends React.Component {
                             </Text>
                             {this.state.arquivo !=
                                 "https://studiistcc.000webhostapp.com/insercaodebanco/upload/" && (
-                                <Image
-                                    resizeMode={"contain"}
-                                    style={styles.questaoImg}
-                                    source={{
-                                        uri: this.state.arquivo,
-                                    }}
-                                />
+                                <TouchableOpacity onPress={this.handleZoom}>
+                                    <Image
+                                        resizeMode={"contain"}
+                                        style={[
+                                            styles.questaoImg,
+                                            {
+                                                transform: [
+                                                    {
+                                                        scale: this.state
+                                                            .questaoImgScale,
+                                                    },
+                                                ],
+                                            },
+                                        ]}
+                                        source={{
+                                            uri: this.state.arquivo,
+                                        }}
+                                    />
+                                </TouchableOpacity>
                             )}
                             <Text style={styles.questaoTexto}>
                                 {this.state.perguntaTexto}
                             </Text>
                         </ScrollView>
-                        {this.state.perguntaTexto != "" && (
-                            <View style={styles.alternativas}>
-                                <ScrollView horizontal={true}>
-                                    <ListItem style={{ height: 45 }}>
-                                        <Text style={styles.in}>A </Text>
-                                        <Radio
-                                            selected={
-                                                this.state.alternativaSelect ==
-                                                    "A" ||
-                                                (this.state.resposta == "A" &&
-                                                    this.state
-                                                        .travarAlternativas)
-                                            }
-                                            selectedColor={this.corAlternativa(
-                                                "A"
-                                            )}
-                                            color={"#000"}
-                                            onPress={() =>
-                                                this.selectAlternativa("A")
-                                            }
-                                        />
-                                    </ListItem>
+                    </View>
+                )}
+                {/* Necessário ficar fora do view acima porque Views absolutos em react native ainda são relativos à mãe em um certo grau */}
+                {!this.state.posSimulado && this.state.perguntaTexto != "" && (
+                    <View style={styles.alternativas}>
+                        <ScrollView horizontal={true}>
+                            <ListItem style={{ height: 45 }}>
+                                <Text style={styles.in}>A </Text>
+                                <Radio
+                                    selected={
+                                        this.state.alternativaSelect == "A" ||
+                                        (this.state.resposta == "A" &&
+                                            this.state.travarAlternativas)
+                                    }
+                                    selectedColor={this.corAlternativa("A")}
+                                    color={"#000"}
+                                    onPress={() => this.selectAlternativa("A")}
+                                />
+                            </ListItem>
 
-                                    <ListItem style={styles.list}>
-                                        <Text style={styles.in}>B </Text>
-                                        <Radio
-                                            selected={
-                                                this.state.alternativaSelect ==
-                                                    "B" ||
-                                                (this.state.resposta == "B" &&
-                                                    this.state
-                                                        .travarAlternativas)
-                                            }
-                                            selectedColor={this.corAlternativa(
-                                                "B"
-                                            )}
-                                            color={"#000"}
-                                            onPress={() =>
-                                                this.selectAlternativa("B")
-                                            }
-                                        />
-                                    </ListItem>
+                            <ListItem style={styles.list}>
+                                <Text style={styles.in}>B </Text>
+                                <Radio
+                                    selected={
+                                        this.state.alternativaSelect == "B" ||
+                                        (this.state.resposta == "B" &&
+                                            this.state.travarAlternativas)
+                                    }
+                                    selectedColor={this.corAlternativa("B")}
+                                    color={"#000"}
+                                    onPress={() => this.selectAlternativa("B")}
+                                />
+                            </ListItem>
 
-                                    <ListItem style={styles.list}>
-                                        <Text style={styles.in}>C </Text>
-                                        <Radio
-                                            selected={
-                                                this.state.alternativaSelect ==
-                                                    "C" ||
-                                                (this.state.resposta == "C" &&
-                                                    this.state
-                                                        .travarAlternativas)
-                                            }
-                                            selectedColor={this.corAlternativa(
-                                                "C"
-                                            )}
-                                            color={"#000"}
-                                            onPress={() =>
-                                                this.selectAlternativa("C")
-                                            }
-                                        />
-                                    </ListItem>
+                            <ListItem style={styles.list}>
+                                <Text style={styles.in}>C </Text>
+                                <Radio
+                                    selected={
+                                        this.state.alternativaSelect == "C" ||
+                                        (this.state.resposta == "C" &&
+                                            this.state.travarAlternativas)
+                                    }
+                                    selectedColor={this.corAlternativa("C")}
+                                    color={"#000"}
+                                    onPress={() => this.selectAlternativa("C")}
+                                />
+                            </ListItem>
 
-                                    <ListItem style={styles.list}>
-                                        <Text style={styles.in}>D </Text>
-                                        <Radio
-                                            selected={
-                                                this.state.alternativaSelect ==
-                                                    "D" ||
-                                                (this.state.resposta == "D" &&
-                                                    this.state
-                                                        .travarAlternativas)
-                                            }
-                                            selectedColor={this.corAlternativa(
-                                                "D"
-                                            )}
-                                            color={"#000"}
-                                            onPress={() =>
-                                                this.selectAlternativa("D")
-                                            }
-                                        />
-                                    </ListItem>
+                            <ListItem style={styles.list}>
+                                <Text style={styles.in}>D </Text>
+                                <Radio
+                                    selected={
+                                        this.state.alternativaSelect == "D" ||
+                                        (this.state.resposta == "D" &&
+                                            this.state.travarAlternativas)
+                                    }
+                                    selectedColor={this.corAlternativa("D")}
+                                    color={"#000"}
+                                    onPress={() => this.selectAlternativa("D")}
+                                />
+                            </ListItem>
 
-                                    <ListItem style={styles.list}>
-                                        <Text style={styles.in}>E </Text>
-                                        <Radio
-                                            selected={
-                                                this.state.alternativaSelect ==
-                                                    "E" ||
-                                                (this.state.resposta == "E" &&
-                                                    this.state
-                                                        .travarAlternativas)
-                                            }
-                                            selectedColor={this.corAlternativa(
-                                                "E"
-                                            )}
-                                            color={"#000"}
-                                            onPress={() =>
-                                                this.selectAlternativa("E")
-                                            }
-                                        />
-                                    </ListItem>
-                                </ScrollView>
-                                <View style={styles.botoesNavegacao}>
-                                    {this.respostasCompletas() &&
-                                        !this.state.travarAlternativas && (
-                                            <Button
-                                                block
-                                                style={styles.corrigirBtn}
-                                                onPress={this.verificar}
-                                            >
-                                                <Text>Enviar Simulado</Text>
-                                            </Button>
-                                        )}
-                                    {this.state.travarAlternativas && (
-                                        <Button
-                                            block
-                                            style={styles.corrigirBtn}
-                                            onPress={
-                                                this.continuarParaPosSimulado
-                                            }
-                                        >
-                                            <Text>Continuar</Text>
-                                        </Button>
-                                    )}
-                                    {this.state.indiceSimulado > 0 && (
-                                        <Button
-                                            style={[
-                                                styles.botaoSimulado,
-                                                { left: 0 },
-                                            ]}
-                                            onPress={this.voltarIndice}
-                                        >
-                                            <Icon name="arrow-back-outline"></Icon>
-                                        </Button>
-                                    )}
-                                    {this.state.indiceSimulado <
-                                        this.props.route.params.numQuestoes -
-                                            1 && (
-                                        <Button
-                                            style={[
-                                                styles.botaoSimulado,
-                                                { right: 0 },
-                                            ]}
-                                            onPress={this.avancarIndice}
-                                        >
-                                            <Icon name="arrow-forward-outline"></Icon>
-                                        </Button>
-                                    )}
-                                </View>
-                            </View>
-                        )}
+                            <ListItem style={styles.list}>
+                                <Text style={styles.in}>E </Text>
+                                <Radio
+                                    selected={
+                                        this.state.alternativaSelect == "E" ||
+                                        (this.state.resposta == "E" &&
+                                            this.state.travarAlternativas)
+                                    }
+                                    selectedColor={this.corAlternativa("E")}
+                                    color={"#000"}
+                                    onPress={() => this.selectAlternativa("E")}
+                                />
+                            </ListItem>
+                        </ScrollView>
+                        <View style={styles.botoesNavegacao}>
+                            {this.respostasCompletas() &&
+                                !this.state.travarAlternativas && (
+                                    <Button
+                                        block
+                                        style={styles.corrigirBtn}
+                                        onPress={this.verificar}
+                                    >
+                                        <Text>Enviar Simulado</Text>
+                                    </Button>
+                                )}
+                            {this.state.travarAlternativas && (
+                                <Button
+                                    block
+                                    style={styles.corrigirBtn}
+                                    onPress={this.continuarParaPosSimulado}
+                                >
+                                    <Text>Continuar</Text>
+                                </Button>
+                            )}
+                            {this.state.indiceSimulado > 0 && (
+                                <Button
+                                    style={[styles.botaoSimulado, { left: 0 }]}
+                                    onPress={this.voltarIndice}
+                                >
+                                    <Icon name="arrow-back-outline"></Icon>
+                                </Button>
+                            )}
+                            {this.state.indiceSimulado <
+                                this.props.route.params.numQuestoes - 1 && (
+                                <Button
+                                    style={[styles.botaoSimulado, { right: 0 }]}
+                                    onPress={this.avancarIndice}
+                                >
+                                    <Icon name="arrow-forward-outline"></Icon>
+                                </Button>
+                            )}
+                        </View>
                     </View>
                 )}
                 {this.state.posSimulado && (
@@ -538,14 +522,8 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 90,
         bottom: 0,
+        flex: 0,
         backgroundColor: "white",
-    },
-    absolute: {
-        position: "absolute",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
     },
     cimaText: {
         margin: 15,
@@ -560,8 +538,8 @@ const styles = StyleSheet.create({
         width: "80%",
         height: 250,
         alignSelf: "center",
-        margin: 20,
-        marginTop: 10,
+        margin: 25,
+        marginTop: 30,
     },
     corrigirBtn: {
         borderRadius: 0,

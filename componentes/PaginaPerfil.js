@@ -33,11 +33,7 @@ const chartConfig = {
 
 import * as SecureStore from "expo-secure-store";
 
-async function save(key, value) {
-    await SecureStore.setItemAsync(key, value);
-}
-
-export default class ListIconExample extends Component {
+export default class PaginaPerfil extends Component {
     constructor(props) {
         super(props);
 
@@ -212,10 +208,21 @@ export default class ListIconExample extends Component {
                     },
                 ],
             });
+
+            console.log(this.state);
         });
     }
 
+    async deleteStore(name) {
+        try {
+            await SecureStore.deleteItemAsync(name);
+        } catch (error) {
+            console.log("Something went wrong on PaginaLogin store", error);
+        }
+    }
+
     alterarEmail() {
+        console.log(this.state.dadosPt);
         this.props.navigation.navigate("AlterarEmail", {
             handler: this.props.handler,
         });
@@ -240,9 +247,16 @@ export default class ListIconExample extends Component {
                 {
                     text: "Sim",
                     onPress: () =>
-                        deletarContaServidor(
-                            this.props.handler,
-                            this.props.userEmail
+                        deletarContaServidor(this.props.userEmail).then(
+                            (sucesso) => {
+                                if (sucesso) {
+                                    this.logout();
+                                } else {
+                                    alert(
+                                        "Um erro ocorreu durante a exclusão. Tente novamente mais tarde."
+                                    );
+                                }
+                            }
                         ),
                 },
             ]
@@ -250,9 +264,8 @@ export default class ListIconExample extends Component {
     }
 
     logout() {
-        save("email", "");
-        save("senha", "");
-        this.props.handler(false, "");
+        this.deleteStore("userEmail");
+        this.props.handler(0, "");
     }
 
     confirmacao() {
@@ -319,25 +332,25 @@ export default class ListIconExample extends Component {
                         </Right>
                     </ListItem>
 
-                    {this.state.dadosPt[0].number !== 0 &&
-                        this.state.dadosPt[1].number !== 0 && (
-                            <View>
-                                <Text style={styles.atividadeTitulo}>
-                                    Questões de Português
-                                </Text>
-                                <PieChart
-                                    data={this.state.dadosPt}
-                                    width={screenWidth}
-                                    height={220}
-                                    chartConfig={chartConfig}
-                                    accessor={"number"}
-                                    backgroundColor={"transparent"}
-                                    paddingLeft={"10"}
-                                    center={[10, 0]}
-                                    absolute
-                                />
-                            </View>
-                        )}
+                    {(this.state.dadosPt[0].number !== 0 ||
+                        this.state.dadosPt[1].number !== 0) && (
+                        <View>
+                            <Text style={styles.atividadeTitulo}>
+                                Questões de Português
+                            </Text>
+                            <PieChart
+                                data={this.state.dadosPt}
+                                width={screenWidth}
+                                height={220}
+                                chartConfig={chartConfig}
+                                accessor={"number"}
+                                backgroundColor={"transparent"}
+                                paddingLeft={"10"}
+                                center={[10, 0]}
+                                absolute
+                            />
+                        </View>
+                    )}
                     {(this.state.dadosMa[0].number !== 0 ||
                         this.state.dadosMa[1].number !== 0) && (
                         <View>

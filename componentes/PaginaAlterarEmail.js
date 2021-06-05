@@ -20,6 +20,14 @@ export default class AlterarEmail extends React.Component {
         super(props);
     }
 
+    async store(name, content) {
+        try {
+            await SecureStore.setItemAsync(name, JSON.stringify(content));
+        } catch (error) {
+            console.log("Something went wrong on PaginaLogin store", error);
+        }
+    }
+
     confirmacao() {
         Alert.alert(
             "Confirmar",
@@ -46,9 +54,10 @@ export default class AlterarEmail extends React.Component {
                             ).then((alterado) => {
                                 if (alterado) {
                                     this.props.route.params.handler(
-                                        true,
+                                        1,
                                         this.emailNovo
                                     );
+                                    this.store("userEmail", this.emailNovo);
                                     alert("Email alterado com sucesso!");
                                     this.props.navigation.navigate("Perfil");
                                 } else {

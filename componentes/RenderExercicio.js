@@ -35,6 +35,7 @@ export default class RenderExercicio extends React.Component {
 
         this.corrigirAlternativa = this.corrigirAlternativa.bind(this);
         this.reloadExercicio = this.reloadExercicio.bind(this);
+        this.handleZoom = this.handleZoom.bind(this);
 
         this.state = {
             perguntaTexto: "",
@@ -43,7 +44,7 @@ export default class RenderExercicio extends React.Component {
             resposta: "",
             alternativaSelect: "",
             corretoGif: 0,
-            blurIntensity: 0,
+            questaoImgScale: 1,
         };
     }
 
@@ -57,7 +58,6 @@ export default class RenderExercicio extends React.Component {
             resposta: "",
             alternativaSelect: "",
             corretoGif: 0,
-            blurIntensity: 0,
             travarAlternativas: false,
         });
 
@@ -104,6 +104,14 @@ export default class RenderExercicio extends React.Component {
     selectAlternativa(alt) {
         if (!this.state.travarAlternativas) {
             this.setState({ alternativaSelect: alt });
+        }
+    }
+
+    handleZoom() {
+        if (this.state.questaoImgScale == 1) {
+            this.setState({ questaoImgScale: 1.3 });
+        } else {
+            this.setState({ questaoImgScale: 1 });
         }
     }
 
@@ -199,13 +207,25 @@ export default class RenderExercicio extends React.Component {
                     </Text>
                     {this.state.arquivo !=
                         "https://studiistcc.000webhostapp.com/insercaodebanco/upload/" && (
-                        <Image
-                            resizeMode={"contain"}
-                            style={styles.questaoImg}
-                            source={{
-                                uri: this.state.arquivo,
-                            }}
-                        />
+                        <TouchableOpacity onPress={this.handleZoom}>
+                            <Image
+                                resizeMode={"contain"}
+                                style={[
+                                    styles.questaoImg,
+                                    {
+                                        transform: [
+                                            {
+                                                scale: this.state
+                                                    .questaoImgScale,
+                                            },
+                                        ],
+                                    },
+                                ]}
+                                source={{
+                                    uri: this.state.arquivo,
+                                }}
+                            />
+                        </TouchableOpacity>
                     )}
                     <Text style={styles.questaoTexto}>
                         {this.state.perguntaTexto}
@@ -340,13 +360,6 @@ const styles = StyleSheet.create({
         height: 90,
         bottom: 0,
         backgroundColor: "white",
-    },
-    absolute: {
-        position: "absolute",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
     },
     cimaText: {
         margin: 15,

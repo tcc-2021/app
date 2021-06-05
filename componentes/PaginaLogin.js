@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, Image } from "react-native";
+import {
+    StyleSheet,
+    TextInput,
+    Image,
+    KeyboardAvoidingView,
+    Dimensions,
+    StatusBar,
+} from "react-native";
 import {
     Container,
     Content,
@@ -13,6 +20,8 @@ import {
     View,
     Root,
 } from "native-base";
+
+import * as SecureStore from "expo-secure-store";
 
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -29,13 +38,31 @@ export default class PaginaLogin extends React.Component {
             return;
         }
 
-        loginUsuarioRemoto(this.props.handler, this.email, this.senha);
+        loginUsuarioRemoto(this.email, this.senha).then((correto) => {
+            if (correto) {
+                this.props.handler(1, this.email);
+                this.store("userEmail", this.email);
+            } else {
+                alert("Seu e-mail ou senha estão errados ou são inválidos.");
+            }
+        });
+    }
+
+    async store(name, content) {
+        try {
+            await SecureStore.setItemAsync(name, JSON.stringify(content));
+        } catch (error) {
+            console.log("Something went wrong on PaginaLogin store", error);
+        }
     }
 
     render() {
         return (
             <Container style={styles.container}>
-                <Content style={{ marginTop: 50 }}>
+                <KeyboardAvoidingView
+                    behavior={"height"}
+                    style={{ marginTop: 50, flex: 1 }}
+                >
                     <Image
                         source={require("../assets/contorno1px-logo-medium.png")}
                         style={{ height: 67, width: 192, alignSelf: "center" }}
@@ -130,7 +157,7 @@ export default class PaginaLogin extends React.Component {
                     >
                         <Text style={{ color: "#7c32ff" }}>Registre-se</Text>
                     </Button>
-                </Content>
+                </KeyboardAvoidingView>
                 <Image
                     source={require("../assets/fundo-login.png")}
                     style={styles.imagemPretensiosa}
@@ -142,7 +169,9 @@ export default class PaginaLogin extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: "150%",
+        height: Dimensions.get("window").height,
+        minHeight: Dimensions.get("window").height,
+        flex: 1,
     },
     titleLogin: {
         fontFamily: "Lato",

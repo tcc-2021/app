@@ -20,7 +20,17 @@ import { registroUsuarioRemoto } from "./AcoesRemotas";
 
 const windowHeight = Dimensions.get("window").height;
 
+import * as SecureStore from "expo-secure-store";
+
 export default class PaginaRegistro extends React.Component {
+    async store(name, content) {
+        try {
+            await SecureStore.setItemAsync(name, JSON.stringify(content));
+        } catch (error) {
+            console.log("Something went wrong on PaginaLogin store", error);
+        }
+    }
+
     registrarUsuario = async () => {
         const re =
             /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -29,11 +39,15 @@ export default class PaginaRegistro extends React.Component {
             (this.email != "" || this.nome != "" || this.senha != "") &&
             re.test(this.email)
         ) {
-            registroUsuarioRemoto(
-                this.props.handler,
-                this.nome,
-                this.email,
-                this.senha
+            registroUsuarioRemoto(this.nome, this.email, this.senha).then(
+                (correto) => {
+                    if (correto) {
+                        this.store("userEmail", this.email);
+                        this.props.handler(1, this.email);
+                    } else {
+                        alert(responseJson);
+                    }
+                }
             );
         } else {
             alert("Verifique seus dados.");
@@ -181,6 +195,8 @@ export default class PaginaRegistro extends React.Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#FFF",
+        height: Dimensions.get("window").height,
+        minHeight: Dimensions.get("window").height,
     },
     titleLogin: {
         fontFamily: "Lato",
