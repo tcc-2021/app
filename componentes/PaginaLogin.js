@@ -5,21 +5,8 @@ import {
     Image,
     KeyboardAvoidingView,
     Dimensions,
-    StatusBar,
 } from "react-native";
-import {
-    Container,
-    Content,
-    Button,
-    Item,
-    Label,
-    Input,
-    Form,
-    Text,
-    Icon,
-    View,
-    Root,
-} from "native-base";
+import { Container, Button, Form, Text, Icon, View } from "native-base";
 
 import * as SecureStore from "expo-secure-store";
 

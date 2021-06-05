@@ -1,24 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import { StyleSheet, TextInput, Image, Dimensions } from "react-native";
 import {
     Container,
     Content,
     Button,
-    Item,
-    Label,
-    Input,
     Form,
     Text,
     Icon,
     View,
 } from "native-base";
 
-import { StackNavigator } from "@react-navigation/stack";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { registroUsuarioRemoto } from "./AcoesRemotas";
-
-const windowHeight = Dimensions.get("window").height;
 
 import * as SecureStore from "expo-secure-store";
 

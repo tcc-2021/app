@@ -4,7 +4,6 @@ import { StyleSheet, Dimensions, Alert } from "react-native";
 
 import {
     Container,
-    Header,
     Content,
     Button,
     ListItem,
@@ -13,7 +12,6 @@ import {
     Left,
     Body,
     Right,
-    Switch,
     View,
 } from "native-base";
 

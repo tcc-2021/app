@@ -8,24 +8,12 @@ import {
     Dimensions,
 } from "react-native";
 
-import {
-    Container,
-    Content,
-    ListItem,
-    Text,
-    Radio,
-    Right,
-    Left,
-    Button,
-    Icon,
-} from "native-base";
+import { Container, ListItem, Text, Radio, Button, Icon } from "native-base";
 
 import {
     exercicioIndividualRemoto,
     atualizarMateriaEstatistica,
 } from "./AcoesRemotas";
-
-import { BlurView } from "expo-blur";
 
 const dims = Dimensions.get("window");
 

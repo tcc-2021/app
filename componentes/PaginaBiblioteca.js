@@ -1,27 +1,7 @@
 import React, { useEffect } from "react";
-import {
-    Animated,
-    Image,
-    StyleSheet,
-    TouchableOpacity,
-    TouchableHighlight,
-    View,
-    Linking,
-    BackHandler,
-    Alert,
-} from "react-native";
+import { StyleSheet, View, Linking } from "react-native";
 
-import {
-    Container,
-    Header,
-    Content,
-    List,
-    ListItem,
-    Text,
-    Icon,
-    Left,
-    Right,
-} from "native-base";
+import { Content, List, ListItem, Text, Icon, Left, Right } from "native-base";
 
 import { useFocusEffect } from "@react-navigation/native";
 

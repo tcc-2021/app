@@ -1,7 +1,6 @@
 import * as React from "react";
-import { ActivityIndicator } from "react-native";
 import { View, Spinner } from "native-base";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import PaginaExercicios from "./PaginaExercicios.js";

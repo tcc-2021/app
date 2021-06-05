@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, ScrollView, TextInput, Image, Alert } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import {
     View,
     Text,
@@ -9,7 +9,6 @@ import {
     Item,
     Icon,
     Input,
-    Label,
     Button,
 } from "native-base";
 

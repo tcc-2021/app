@@ -1,17 +1,6 @@
 import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
-import {
-    Container,
-    Header,
-    Content,
-    ListItem,
-    CheckBox,
-    Text,
-    Body,
-    View,
-    Button,
-    Icon,
-} from "native-base";
+import { StyleSheet, Image, ScrollView } from "react-native";
+import { Container, ListItem, CheckBox, Text, Body, Icon } from "native-base";
 
 import GradientButton from "react-native-gradient-buttons";
 import Slider from "@react-native-community/slider";

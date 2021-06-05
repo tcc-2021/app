@@ -223,7 +223,6 @@ export function simuladoAtualizarEstatisticas(
     respostasSimulado,
     email
 ) {
-    console.log("SIMULADOATUALIZARESTATISTICA!!!!");
     // acertos
     let ama = 0;
     let apt = 0;

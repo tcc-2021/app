@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, ScrollView, Alert } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import {
     View,
     Text,

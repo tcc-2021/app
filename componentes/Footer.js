@@ -1,23 +1,8 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
-import {
-    Container,
-    Header,
-    Title,
-    Content,
-    Button,
-    Footer,
-    FooterTab,
-    Body,
-    Left,
-    Right,
-    Icon,
-    Text,
-} from "native-base";
+import { View } from "react-native";
+import { Content, Button, Footer, FooterTab, Icon, Text } from "native-base";
 
 import temas from "../temas-native-base/Tema.js";
-
-import { useNavigation } from "@react-navigation/native";
 
 export default function IconFooter(props) {
     const [routeName, setRouteName] = React.useState("Simulado");

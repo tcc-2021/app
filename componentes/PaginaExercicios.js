@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 
 import {
     View,
@@ -8,7 +8,6 @@ import {
     Dimensions,
     Image,
     ScrollView,
-    BackHandler,
 } from "react-native";
 
 // Tentativa de suportar o máximo de viewports possíveis, provavelmente falha por conta do - 40. rever isso

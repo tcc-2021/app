@@ -9,29 +9,13 @@ import {
     Alert,
 } from "react-native";
 
-import {
-    Container,
-    Content,
-    ListItem,
-    Text,
-    Radio,
-    Right,
-    Left,
-    Button,
-    Icon,
-} from "native-base";
+import { Container, ListItem, Text, Radio, Button, Icon } from "native-base";
 
-import {
-    gerarSimulado,
-    atualizarMateriaEstatistica,
-    simuladoAtualizarEstatisticas,
-} from "./AcoesRemotas";
+import { gerarSimulado, simuladoAtualizarEstatisticas } from "./AcoesRemotas";
 
-import { BlurView } from "expo-blur";
 import { PieChart } from "react-native-chart-kit";
 import GradientButton from "react-native-gradient-buttons";
 
-const dims = Dimensions.get("window");
 const screenWidth = Dimensions.get("window").width;
 const chartConfig = {
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
