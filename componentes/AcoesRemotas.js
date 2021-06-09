@@ -109,7 +109,7 @@ export function registroUsuarioRemoto(nome, email, senha) {
     )
         .then((response) => response.json())
         .then((responseJson) => {
-            return responseJson == 0;
+            return responseJson;
         })
         .catch((error) => {
             console.error(error);

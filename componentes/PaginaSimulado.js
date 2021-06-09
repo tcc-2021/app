@@ -8,7 +8,9 @@ import Slider from "@react-native-community/slider";
 export default class PaginaSimulado extends Component {
     constructor(props) {
         super(props);
-
+        this.handleCheckboxes = this.handleCheckboxes.bind(this);
+        this.materiasSelecionadasComoArray =
+            this.materiasSelecionadasComoArray.bind(this);
         // Mantém o estado das checkboxes selecionadas
         this.state = {
             portugues: true,

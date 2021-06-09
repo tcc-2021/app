@@ -23,6 +23,7 @@ export default class PaginaInicial extends React.Component {
     constructor(props) {
         super(props);
         this.handler = this.handler.bind(this);
+        this.readEmail = this.readEmail.bind(this);
         // isLoggedIn = 0 -> PaginaLogin
         // isLoggedIn = 1 -> PaginaExercicio
         // isLoggedIn = 2 -> Carregando
@@ -56,7 +57,6 @@ export default class PaginaInicial extends React.Component {
     }
 
     handler(logged, email) {
-        console.log(logged);
         this.setState({
             isLoggedIn: logged,
             userEmail: email,

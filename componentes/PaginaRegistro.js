@@ -17,6 +17,15 @@ import { registroUsuarioRemoto } from "./AcoesRemotas";
 import * as SecureStore from "expo-secure-store";
 
 export default class PaginaRegistro extends React.Component {
+    constructor(props) {
+        super(props);
+        this.registrarUsuario = this.registrarUsuario.bind(this);
+        this.store = this.store.bind(this);
+        this.email = "";
+        this.nome = "";
+        this.senha = "";
+    }
+
     async store(name, content) {
         try {
             await SecureStore.setItemAsync(name, JSON.stringify(content));
@@ -25,28 +34,34 @@ export default class PaginaRegistro extends React.Component {
         }
     }
 
-    registrarUsuario = async () => {
+    registrarUsuario() {
         const re =
             /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if (
-            (this.email != "" || this.nome != "" || this.senha != "") &&
-            re.test(this.email)
+            this.email != "" &&
+            this.nome != "" &&
+            this.senha != "" &&
+            re.test(this.email.toLowerCase())
         ) {
             registroUsuarioRemoto(this.nome, this.email, this.senha).then(
                 (correto) => {
-                    if (correto) {
+                    if (correto === 0) {
                         this.store("userEmail", this.email);
                         this.props.handler(1, this.email);
+                    } else if (correto === 1) {
+                        alert("Email já registrado!");
                     } else {
-                        alert(responseJson);
+                        alert(
+                            "Um erro ocorreu no servidor. Tente novamente mais tarde."
+                        );
                     }
                 }
             );
         } else {
             alert("Verifique seus dados.");
         }
-    };
+    }
 
     render() {
         return (

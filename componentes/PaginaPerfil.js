@@ -220,7 +220,6 @@ export default class PaginaPerfil extends Component {
     }
 
     alterarEmail() {
-        console.log(this.state.dadosPt);
         this.props.navigation.navigate("AlterarEmail", {
             handler: this.props.handler,
         });
@@ -277,14 +276,14 @@ export default class PaginaPerfil extends Component {
         return (
             <Container>
                 <Content style={styles.content}>
-                    <ListItem icon onPress={() => this.alterarEmail()}>
+                    <ListItem icon onPress={this.alterarEmail.bind(this)}>
                         <Left>
                             <Button style={{ backgroundColor: "#007AFF" }}>
                                 <Icon active name="mail" />
                             </Button>
                         </Left>
                         <Body>
-                            <Text>Alterar e-mail</Text>
+                            <Text>Alterar email</Text>
                         </Body>
                         <Right>
                             <Icon active name="arrow-forward" />

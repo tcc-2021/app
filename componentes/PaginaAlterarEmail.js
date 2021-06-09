@@ -17,6 +17,7 @@ import { alterarEmailRemoto } from "./AcoesRemotas";
 export default class AlterarEmail extends React.Component {
     constructor(props) {
         super(props);
+        this.confirmacao = this.confirmacao.bind(this);
     }
 
     async store(name, content) {
@@ -30,7 +31,7 @@ export default class AlterarEmail extends React.Component {
     confirmacao() {
         Alert.alert(
             "Confirmar",
-            "Seu e-mail será alterado, tem certeza das modificações?",
+            "Seu email será alterado, tem certeza das modificações?",
             [
                 {
                     text: "Cancelar",
@@ -78,13 +79,13 @@ export default class AlterarEmail extends React.Component {
         return (
             <Container>
                 <Content style={{ marginTop: 30, position: "relative" }}>
-                    <Text style={styles.title}> Alterar e-mail</Text>
+                    <Text style={styles.title}> Alterar email</Text>
                     <Form>
                         <View style={{ margin: 20 }}>
                             <Item>
                                 <Icon active name="mail" />
                                 <Input
-                                    placeholder="E-mail atual"
+                                    placeholder="Email atual"
                                     onChangeText={(emailAtual) =>
                                         (this.emailAtual = emailAtual)
                                     }
@@ -94,7 +95,7 @@ export default class AlterarEmail extends React.Component {
                             <Item>
                                 <Icon active name="star" />
                                 <Input
-                                    placeholder="Novo e-mail"
+                                    placeholder="Novo email"
                                     onChangeText={(emailNovo) =>
                                         (this.emailNovo = emailNovo)
                                     }

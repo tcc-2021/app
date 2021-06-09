@@ -36,6 +36,7 @@ export default class RenderSimulado extends React.Component {
         this.continuarParaPosSimulado =
             this.continuarParaPosSimulado.bind(this);
         this.handleZoom = this.handleZoom.bind(this);
+        this.formatarMateria = this.formatarMateria.bind(this);
 
         this.state = {
             perguntaTexto: "",

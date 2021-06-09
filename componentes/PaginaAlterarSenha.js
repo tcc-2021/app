@@ -17,6 +17,7 @@ import { alterarSenhaRemoto } from "./AcoesRemotas";
 export default class AlterarSenha extends React.Component {
     constructor(props) {
         super(props);
+        this.confirmacao = this.confirmacao.bind(this);
     }
 
     confirmacao() {

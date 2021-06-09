@@ -17,6 +17,10 @@ import { loginUsuarioRemoto } from "./AcoesRemotas";
 export default class PaginaLogin extends React.Component {
     constructor(props) {
         super(props);
+        this.loginUsuario = this.loginUsuario.bind(this);
+        this.store = this.store.bind(this);
+        this.email = "";
+        this.senha = "";
     }
 
     loginUsuario() {
@@ -30,7 +34,7 @@ export default class PaginaLogin extends React.Component {
                 this.props.handler(1, this.email);
                 this.store("userEmail", this.email);
             } else {
-                alert("Seu e-mail ou senha estão errados ou são inválidos.");
+                alert("Seu email ou senha estão errados ou são inválidos.");
             }
         });
     }

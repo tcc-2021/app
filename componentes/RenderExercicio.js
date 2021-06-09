@@ -24,6 +24,8 @@ export default class RenderExercicio extends React.Component {
         this.corrigirAlternativa = this.corrigirAlternativa.bind(this);
         this.reloadExercicio = this.reloadExercicio.bind(this);
         this.handleZoom = this.handleZoom.bind(this);
+        this.verificar = this.verificar.bind(this);
+        this.selectAlternativa = this.selectAlternativa.bind(this);
 
         this.state = {
             perguntaTexto: "",
