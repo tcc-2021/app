@@ -258,6 +258,7 @@ export default class RenderSimulado extends React.Component {
             indiceSimulado: this.indice,
             alternativaSelect: this.respostasSimulado[this.indice],
             respostasSimuladoState: this.respostasSimulado,
+            questaoImgScale: 1,
         });
         this.updateInterno(this.indice);
     }
@@ -268,6 +269,7 @@ export default class RenderSimulado extends React.Component {
             indiceSimulado: this.indice,
             alternativaSelect: this.respostasSimulado[this.indice],
             respostasSimuladoState: this.respostasSimulado,
+            questaoImgScale: 1,
         });
         this.updateInterno(this.indice);
     }

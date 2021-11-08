@@ -133,7 +133,7 @@ export default class PaginaLogin extends React.Component {
                                 shadowOffset: 3,
                                 shadowRadius: 2,
                             }}
-                            onPress={this.loginUsuario.bind(this)}
+                            onPress={this.loginUsuario}
                         >
                             <Text>Entrar</Text>
                         </Button>

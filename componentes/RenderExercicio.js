@@ -29,7 +29,8 @@ export default class RenderExercicio extends React.Component {
 
         this.state = {
             perguntaTexto: "",
-            arquivo: "http://exemplo.com",
+            arquivo:
+                "https://studiistcc.000webhostapp.com/insercaodebanco/upload/",
             ano: "",
             resposta: "",
             alternativaSelect: "",
@@ -64,6 +65,8 @@ export default class RenderExercicio extends React.Component {
                 });
             }
         );
+        console.log("aaaaaa");
+        console.log(this.state.perguntaTexto);
     }
 
     formatarMateria() {
@@ -123,7 +126,11 @@ export default class RenderExercicio extends React.Component {
     }
 
     corrigirAlternativa(acerto) {
-        this.setState({ corretoGif: 0, travarAlternativas: true });
+        this.setState({
+            corretoGif: 0,
+            travarAlternativas: true,
+            questaoImgScale: 1,
+        });
         atualizarMateriaEstatistica(
             this.props.route.params.materia,
             acerto,

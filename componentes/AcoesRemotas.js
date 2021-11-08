@@ -84,6 +84,7 @@ export function loginUsuarioRemoto(email, senha) {
     })
         .then((response) => response.json())
         .then((responseJson) => {
+            console.log("ok");
             return responseJson == 0;
         })
         .catch((error) => {
@@ -187,6 +188,7 @@ export function baixarEstatisticas(email) {
     )
         .then((response) => response.json())
         .then((responseJson) => {
+            console.log(responseJson);
             return responseJson;
         })
         .catch((error) => {
@@ -244,87 +246,62 @@ export function simuladoAtualizarEstatisticas(
     let ege = 0;
 
     perguntasSimulado.forEach(function (pergunta, index) {
-        switch (pergunta["Materia"]) {
-            case "matematica":
-                if (
-                    perguntasSimulado[index]["Resposta"] ==
-                    respostasSimulado[index]
-                ) {
+        const certo =
+            perguntasSimulado[index]["Resposta"] == respostasSimulado[index];
+        if (certo) {
+            switch (pergunta["Materia"]) {
+                case "matematica":
                     ama += 1;
-                } else {
-                    ema += 1;
-                }
-                break;
-            case "portugues":
-                if (
-                    perguntasSimulado[index]["Resposta"] ==
-                    respostasSimulado[index]
-                ) {
+                    break;
+                case "portugues":
                     apt += 1;
-                } else {
-                    ept += 1;
-                }
-                break;
-            case "biologia":
-                if (
-                    perguntasSimulado[index]["Resposta"] ==
-                    respostasSimulado[index]
-                ) {
+                    break;
+                case "biologia":
                     abi += 1;
-                } else {
-                    ebi += 1;
-                }
-                break;
-            case "quimica":
-                if (
-                    perguntasSimulado[index]["Resposta"] ==
-                    respostasSimulado[index]
-                ) {
+                    break;
+                case "quimica":
                     aqu += 1;
-                } else {
-                    equ += 1;
-                }
-                break;
-            case "fisica":
-                if (
-                    perguntasSimulado[index]["Resposta"] ==
-                    respostasSimulado[index]
-                ) {
+                    break;
+                case "fisica":
                     afi += 1;
-                } else {
-                    efi += 1;
-                }
-                break;
-            case "ingles":
-                if (
-                    perguntasSimulado[index]["Resposta"] ==
-                    respostasSimulado[index]
-                ) {
+                    break;
+                case "ingles":
                     aing += 1;
-                } else {
-                    eing += 1;
-                }
-                break;
-            case "historia":
-                if (
-                    perguntasSimulado[index]["Resposta"] ==
-                    respostasSimulado[index]
-                ) {
+                    break;
+                case "historia":
                     ahi += 1;
-                } else {
-                    ehi += 1;
-                }
-                break;
-            case "geografia":
-                if (
-                    perguntasSimulado[index]["Resposta"] ==
-                    respostasSimulado[index]
-                ) {
+                    break;
+                case "geografia":
                     age += 1;
-                } else {
+                    break;
+            }
+        } else {
+            switch (pergunta["Materia"]) {
+                case "matematica":
+                    ema += 1;
+                    break;
+                case "portugues":
+                    ept += 1;
+                    break;
+                case "biologia":
+                    ebi += 1;
+                    break;
+                case "quimica":
+                    equ += 1;
+                    break;
+                case "fisica":
+                    efi += 1;
+                    break;
+                case "ingles":
+                    eing += 1;
+                    break;
+                case "historia":
+                    ehi += 1;
+                    break;
+                case "geografia":
                     ege += 1;
-                }
-                break;
+                    break;
+            }
         }
     });
 
