@@ -84,7 +84,6 @@ export function loginUsuarioRemoto(email, senha) {
     })
         .then((response) => response.json())
         .then((responseJson) => {
-            console.log("ok");
             return responseJson == 0;
         })
         .catch((error) => {
@@ -188,7 +187,6 @@ export function baixarEstatisticas(email) {
     )
         .then((response) => response.json())
         .then((responseJson) => {
-            console.log(responseJson);
             return responseJson;
         })
         .catch((error) => {

@@ -206,8 +206,6 @@ export default class PaginaPerfil extends Component {
                     },
                 ],
             });
-
-            console.log(this.state);
         });
     }
 
